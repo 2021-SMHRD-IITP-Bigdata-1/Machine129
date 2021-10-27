@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ page session="true" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -46,10 +47,20 @@
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
               <li class="nav-item px-2 font-2"><a class="nav-link active" aria-current="page" href="#!" >홈</a></li>
-              <li class="nav-item px-2 font-2"><a class="nav-link" aria-current="page" href="#!" >커뮤니티</a></li>
+              <li class="nav-item px-2 font-2"><a class="nav-link" aria-current="page" href="ajaxboard1" >커뮤니티</a></li>
               <li class="nav-item px-2-1 font-2"><a class="nav-link" aria-current="page" href="#!" >마이페이지</a></li>
-            </ul><a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" href="#!" style="">&nbsp로그인&nbsp</a>  
-            </ul><a class="btn-g btn-primary order-1 order-lg-0 font-1" href="#!" style="">&nbsp스터디 참여하기&nbsp</a>
+            </ul>
+            <c:choose>
+            <c:when test="${user_id == null}">
+            	<a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" href="login" style="">&nbsp로그인&nbsp</a>
+            </c:when> 
+            <c:when test="${user_id != null}">
+            	<a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" href="logout" style="">&nbsp로그아웃&nbsp</a>
+            </c:when> 
+            </c:choose>
+
+
+            <a class="btn-g btn-primary order-1 order-lg-0 font-1" href="#!" style="">&nbsp스터디 참여하기&nbsp</a>
            
           </div>
         </div>
@@ -116,14 +127,14 @@
       <!-- <section> begin ============================-->
       
 
-        <div class="pt-sm-5 ps-sm-7" style="background-color: #b9fbc0 !important;">
-          <div class="row">
-            <div class="col-12 col-sm-12 col-lg-6 mb-1 order-0 order-sm-0"><a class="text-decoration-none" href="#"><img src="${path}/resources/image/logo.png" height="51" alt="" /></a>
-              <p class="text-light my-4"> <span class="text-light" style="color:#4d908e !important;"> made by 하하 · jihee · 첸쥬띵  · 딸기가 좋아 </span>
+        <div class="pt-sm-3 ps-sm-7" style="background-color: #b9fbc0 !important;">
+          
+            <div class="row col-12 col-sm-12 col-lg-6 order-0 order-sm-0 ">
+            <a class="text-decoration-none float-l" href="#"><img src="${path}/resources/image/logo.png" height="51" alt="" /></a>
+            <p class="text-light my-2 float-l"> <span class="text-light" style="color:#4d908e !important;"> made by 하하 · jihee · 첸쥬띵  · 딸기가 좋아 </span></p>
             </div>
-           
+             
           </div>
-        </div>
         <!-- end of .container-->
 
       

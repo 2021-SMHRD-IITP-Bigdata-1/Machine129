@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ml129.mapper.CamdyBoardMapper">
+
+	<select id="camdyboardList" resultType="org.ml129.domain.CamdyBoard">
+		select * from posts
+	</select>
+	
+	<select id="camdyboardListJson" resultType="org.ml129.domain.CamdyBoard">
+     select * from posts order by post_seq desc 
+   </select>
+	
+	<select id="boardContents" parameterType="int"
+		resultType="org.ml129.domain.CamdyBoard">
+		select * from posts where post_seq=#{post_seq}
+	</select>
+
+	<update id="camdyboardUpdate" parameterType="org.ml129.domain.CamdyBoard">
+		update posts
+		set post_title = #{post_title}, <!-- parameter와 같은 존재 -->
+		post_content = #{post_content}
+		where post_seq = #{post_seq}
+	</update>
+
+	<delete id="camdyboardDelete" parameterType="int">
+		delete from posts where post_seq=#{post_seq}
+	</delete>
+
+	<insert id="camdyboardInsert" parameterType="org.ml129.domain.CamdyBoard">
+		insert into posts(post_seq, post_title, post_content, post_pic, user_id, post_date, post_type)
+		values(#{post_seq},#{post_title},#{post_content},#{post_pic},#{user_id},sysdate(),#{post_type})
+	</insert>
+   
+	<update id="ajaxcamdyUpdate" parameterType="org.ml129.domain.CamdyBoard">
+       update posts
+     	set post_title = #{post_title},
+     		user_id = #{user_id}
+     	where post_seq = #{post_seq}
+   </update>
+   
+   <update id="ajaxcamdyContents" parameterType="org.ml129.domain.CamdyBoard">
+       update posts
+     	set post_content = #{post_content}
+     	where post_seq = #{post_seq}
+   </update>
+   
+   </mapper>
