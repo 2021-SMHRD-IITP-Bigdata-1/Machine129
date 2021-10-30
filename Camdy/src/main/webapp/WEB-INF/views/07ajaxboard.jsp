@@ -201,22 +201,33 @@
       <!-- ============================================-->
 
  <nav class="navbar navbar-expand-lg navbar-light sticky-top py-4 d-block bg-light" data-navbar-on-scroll="data-navbar-on-scroll">
-        <div class="container"><a class="navbar-brand" href="#!"><img src="${path}/resources/image/logo.png" height="52" alt="로고" /></a>
+        <div class="container"><a class="navbar-brand" href="intro"><img src="${path}/resources/image/logo.png" height="52" alt="로고" /></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
               <li class="nav-item px-2 font-2"><a class="nav-link active" aria-current="page" href="intro" >홈</a></li>
               <li class="nav-item px-2 font-2"><a class="nav-link" aria-current="page" href="ajaxboard1" >커뮤니티</a></li>
-              <li class="nav-item px-2-1 font-2"><a class="nav-link" aria-current="page" href="#!" >마이페이지</a></li>
-            </ul><a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" href="login" style="">&nbsp로그인&nbsp</a>  
-            </ul><a class="btn-g btn-primary order-1 order-lg-0 font-1" href="#!" style="">&nbsp스터디 참여하기&nbsp</a>
+            </ul>
+            <c:choose>
+            <c:when test="${user_id == null}">
+            	<a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" href="login" style="">&nbsp로그인&nbsp</a>
+            	<a class="btn-g btn-primary order-1 order-lg-0 font-1" href="login" style="">&nbsp스터디 참여하기&nbsp</a>
+            </c:when> 
+            <c:when test="${user_id != null}">
+            	<div class="me-2 ms-4"><a href="#!"><img src="${path}/resources/image/user.png" height="40" alt="마이페이지" /></a></div>
+            	<div class="me-4"><b>${user_nickname}</b>님 환영합니다.</div>
+            	<a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" href="logout" style="">&nbsp로그아웃&nbsp</a>
+            </c:when> 
+            </c:choose>
+              
+            
            
           </div>
         </div>
       </nav>
       
       
-<div class="container">
+<div class="container mt-7 mb-7">
   <h2>Camdy 커뮤니티</h2>
   <br>
   <div class="panel panel-default">

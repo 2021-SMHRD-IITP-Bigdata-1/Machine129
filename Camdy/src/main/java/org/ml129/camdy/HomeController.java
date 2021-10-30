@@ -1,18 +1,16 @@
 package org.ml129.camdy;
 
 import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.ml129.domain.CamdyBoard;
 import org.ml129.domain.LoginVO;
+import org.ml129.domain.StudyVO;
 import org.ml129.mapper.CamdyBoardMapper;
 import org.ml129.mapper.BasicMapper;
 
@@ -20,12 +18,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 
 
@@ -38,10 +35,13 @@ public class HomeController {
 	private BasicMapper bmapper;
 	
 	
-	@Autowired // DI(의존성주입) -> new(X)
+	@Autowired 
 	private CamdyBoardMapper mapper;
-
 	public CamdyBoard vo;
+
+
+	
+	//게시판 Controller 
 
 	@RequestMapping("ajaxboard1")
 	public String camdyAjaxboardList(HttpServletRequest request) {
@@ -51,13 +51,12 @@ public class HomeController {
 		return "07ajaxboard";
 	}
 
-	@RequestMapping("board") // 클라이언의 요청을 받아서 처리하는 부분
+	@RequestMapping("board") 
 	public String camdyboardList(HttpServletRequest request) {
-		// 데이터베이스와 연동해서 게시판 전체 리스트를 가져오기 -> Model(DAO)
 		logger.info("게시판 목록 페이지 입니다.");
 		List<CamdyBoard> list = mapper.camdyboardList();
-		request.setAttribute("list", list); // 객체바인딩(request바인딩)
-		return "05board"; // boardList ->View의 논리적인이름->/WEB-INF/views/boardList.jsp
+		request.setAttribute("list", list); 
+		return "05board";
 	}
 
 	@RequestMapping("camdyboardListJson")
@@ -67,22 +66,67 @@ public class HomeController {
 
 		return list;
 	}
+	
+	// 게시판의 수정 기능
+		@RequestMapping("camdyboardUpdate")
+		public String boardUpdate(CamdyBoard vo) {
 
+			mapper.camdyboardUpdate(vo);
+
+			return "redirect:/boardList.do";
+		}
+
+		// 게시판의 삭제 기능
+		@RequestMapping("camdyboardDelete")
+		public String boardDelete(int post_seq) {
+
+			mapper.camdyboardDelete(post_seq);
+
+			return "redirect:/boardList.do";
+		}
+
+		// 게시판 글 작성 페이지
+		@RequestMapping("boardwrite")
+		public String boardwrite() {
+			logger.info("게시글 작성 페이지 입니다.");
+
+			return "06boardwrite";
+
+		}
+
+		// 게시판 글 삽입
+		@RequestMapping("camdyboardInsert")
+		public String camdyboardInsert(CamdyBoard vo) {
+
+			mapper.camdyboardInsert(vo);
+
+			return "redirect:/board";
+		}
+	
+		
+		
+		
+		
+	// ------------------------------------------- 	
+	// ------------홈 화면 Controller----------------
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home(HttpServletRequest request) {
+		logger.info("홈화면 입니다.");
+		
+	    HttpSession session = request.getSession();
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-
+		String user_id = (String) session.getAttribute("user_id");
+		List<StudyVO> list = bmapper.studyList();
+		List<StudyVO> mlist = bmapper.studyMyList(user_id);
+		request.setAttribute("slist", list);
+		request.setAttribute("mlist", mlist);
+				
+		
 		return "02home";
 	}
 
-	// 소개 페이지
+	// ------------------------------------------- 	
+	// ----------소개 페이지 Controller--------------
 	@RequestMapping("intro")
 	public String intro() {
 		logger.info("소개 페이지 입니다.");
@@ -91,43 +135,9 @@ public class HomeController {
 
 	}
 
-	// 게시판의 수정 기능
-	@RequestMapping("camdyboardUpdate")
-	public String boardUpdate(CamdyBoard vo) {
-
-		mapper.camdyboardUpdate(vo);
-
-		return "redirect:/boardList.do";
-	}
-
-	// 게시판의 삭제 기능
-	@RequestMapping("camdyboardDelete")
-	public String boardDelete(int post_seq) {
-
-		mapper.camdyboardDelete(post_seq);
-
-		return "redirect:/boardList.do";
-	}
-
-	// 게시판 글 작성 페이지
-	@RequestMapping("boardwrite")
-	public String boardwrite() {
-		logger.info("게시글 작성 페이지 입니다.");
-
-		return "06boardwrite";
-
-	}
-
-	// 게시판 글 삽입
-	@RequestMapping("camdyboardInsert")
-	public String camdyboardInsert(CamdyBoard vo) {
-
-		mapper.camdyboardInsert(vo);
-
-		return "redirect:/board";
-	}
-
-	// 로그인 페이지로 이동
+	
+	// ------------------------------------------- 	
+	// ----------로그인 페이지 Controller------------
 	@RequestMapping("login")
 	public String login() {
 		logger.info("로그인 페이지 입니다.");
@@ -135,7 +145,8 @@ public class HomeController {
 		return "03login";
 
 	}
-		
+
+	//-------------- 로그인 기능 구현 ---------------
 	@RequestMapping("/login.do")
 	public String logincheck(HttpServletRequest req) {
 		
@@ -151,26 +162,25 @@ public class HomeController {
 		
 		
 		LoginVO vo = bmapper.LoginCheck(user_id, user_pw);
-		System.out.println(vo);
-		
 		
 		
 		if(vo==null) {
 			
-			return "02home";
+			return "01intro";
 			
 		}else {
 		
 			session.setAttribute("user_id",user_id);
+			session.setAttribute("user_nickname",vo.getUser_nickname());
 			
-			return "01intro";
+			return "redirect:/";
 			
 		}
 		
 				
 	}
 
-	
+	//-------------- 로그아웃 기능 구현 ---------------
 	@RequestMapping("logout") 
 	public String logout(HttpServletRequest req) { 
 		logger.info("회원이 로그아웃 하였습니다.");
@@ -184,7 +194,8 @@ public class HomeController {
 		
 	}
 	
-	
+	// -------------------------------------------
+	//---------- 회원가입 페이지 Controller ----------
 	@RequestMapping("join") 
 	public String joinPage() { 
 		logger.info("회원가입 페이지입니다.");
@@ -195,6 +206,7 @@ public class HomeController {
 	
 	
 	
+	//---------- 회원 DB 저장 기능 구현 ----------
 	@RequestMapping("/boardInsert.do")
 	public String joinInsert(HttpServletRequest req) throws UnsupportedEncodingException {
 		logger.info("users DB에 데이터 삽입 중 입니다.");
@@ -219,8 +231,6 @@ public class HomeController {
 		logger.info(user_nickname);
 		logger.info(user_birthdate);
 		
-		
-//		bmapper.joinInsert(vo);
 		
 		return "redirect:/login";
 				

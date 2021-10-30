@@ -29,6 +29,13 @@
      font-style: normal;
 }
 
+@font-face {
+     font-family: 'S-CoreDream-6Bold';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
 :root {
   --bs-blue: #002147;
   --bs-indigo: #6237FF;
@@ -18500,6 +18507,12 @@ ul {
 	font-family: 'S-CoreDream-6Bold' !important;
 	font-size:20px;
 }
+
+.font-title {
+	font-family: 'S-CoreDream-6Bold' !important;
+	font-size:40px;
+}
+
 
 .font-2 {
 	font-family: 'S-CoreDream-4Regular' !important;

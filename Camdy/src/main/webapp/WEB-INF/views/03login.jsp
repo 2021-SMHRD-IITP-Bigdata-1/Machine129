@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>캠디 - 화상채팅으로 공부하세요</title>
-    <link href="${path}/resources/css/logincss.css" rel="stylesheet"/ >
+    <link href="${path}/resources/css/login.css" rel="stylesheet"/ >
     <link href="${path}/resources/css/theme.css" rel="stylesheet"/>
     
 </head>
@@ -23,7 +23,8 @@
  </header>
         
     <div class="login-form">    
-    <section >
+    <section class="logincard">
+    
        <h2 class="static">자동으로 공부시간을 측정해주는</h1>
         <h1 class="static">캠디와 함께 공부해요✍️</h1>
         <form action="${path}/login.do" class="static" method="post">

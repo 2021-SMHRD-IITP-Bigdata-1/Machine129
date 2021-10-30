@@ -1,0 +1,191 @@
+html {
+    height: 100%;
+}
+.make {
+    margin: 0;
+    height: 100%;
+    background: #f5f6f7;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 500px;
+    padding-top: 70px;
+    padding-bottom: 300px;
+    font-size: 20px;
+}
+.detail{
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 70px;
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 20px;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+}
+
+input,textarea{  
+   
+   background-color: #e9ecef;
+   border-width: 0px;
+   border-radius: 5px;
+   border: none !important;
+   
+}
+
+
+.detailinfo{
+    text-align: center;
+}
+.detail input{
+    width: 210px;
+    height: 50px;
+    margin-top: 10px;
+    font-size: 20px;
+    border-radius: 15px;
+}
+.study::before{
+    content: "";
+    position: relative; 
+    z-index: 1;
+    top:0; right: 0; bottom: 0; left: 0;
+}
+.studyrm {
+    position: relative; 
+    z-index: 2;
+    padding:10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.studyrm input{
+    width: 80%;
+    padding: 10px 10px; 
+    border-radius: 20px;
+    font-size: 20px;
+}
+.formlabel input{
+    border-radius: 50%;
+    line-height: 1;
+    width: 20px;
+    height: 20px;
+}
+input + label, input + label:before,
+input + label:after{
+    -webkit-transition: all.2s;
+    transition: all.2s;
+}
+input + label{ /*토글 바 크기*/
+    display: inline-block;
+    position: relative;
+    width: 65px;
+    height: 18px;
+    border-radius: 24px;
+    cursor: pointer;
+    margin: 10px;
+}
+input + label :before {
+    display: block;
+    content: attr(data-off-label);
+    position: absolute;
+    top: 14px;
+    right: 7px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+input + label:after{  /*토글 동그라미 on색깔*/
+    content: "";
+    position: absolute;
+    left: 2px;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 50%;
+}
+input:checked+label:before{
+    content: attr(data-on-label);
+    left: 5px;
+    right: auto;
+    color: black;
+}
+input:checked+label:after{ /*토글 동그라미 색깔*/
+    left: 54px;
+    background-color: white;
+}
+#demo01+label:before{ /*카메라 글씨 색깔*/
+    color: blue;
+}
+#demo01+label{
+    background-color: green;
+    
+}
+#demo01:checked+label{ /*1번째 토글바 off 색깔*/
+    background-color: gray;
+}
+#demo01:checked+label :before{
+    color: blue;
+}
+#demo02+label{
+    background-color: green;
+    
+}
+#demo02:checked+label{
+    background-color: gray;
+}
+#demo03+label{ /*2번째 토글바 on 색깔*/
+    background-color: green;
+      
+}
+#demo03:checked+label{ /*3번째 토글바 off 색깔*/
+    background-color: gray;
+}
+textarea{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+Input:focus {
+  outline: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: 3px solid #b9fbc0;
+}
+
+textarea:focus {
+  outline: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: 3px solid #b9fbc0;
+}
+
+
+.btn-study button{
+    width: 100%; height:50px;
+    background: #b9fbc0;
+    font-size : 20px;
+    border-radius: 10px;
+}
+.toggle input{
+    display: none;
+}
+select{
+    font-size: 20px;
+}
+
+input::placeholder {
+  color: #6c757d !important;
+  font-size:15px;
+  
+}
+textarea::placeholder {
+  color: #6c757d !important;
+  font-size:15px;
+}
+
+
+

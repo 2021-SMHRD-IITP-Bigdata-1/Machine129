@@ -8,6 +8,10 @@
      select * from users where user_id=#{user_id} and user_pw=#{user_pw}  
    </select>
    
+    <select id="bringNickname" resultType="org.ml129.domain.LoginVO">
+     select user_nickname from users where user_id=#{user_id}
+   </select>
+   
     <insert id="joinInsert" parameterType="org.ml129.domain.LoginVO">
        insert into users(user_id,user_pw,user_name,user_nickname,user_birthdate)
        values (#{user_id},#{user_pw},#{user_name},#{user_nickname},#{user_birthdate})
