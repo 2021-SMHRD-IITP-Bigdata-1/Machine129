@@ -59,6 +59,24 @@ input,textarea{
     box-sizing: border-box;
     margin-bottom: 20px;
 }
+.studyrm-2 {
+    position: relative; 
+    z-index: 2;
+    padding:10px;
+    box-sizing: border-box;
+    
+}
+
+.studyrm-pw {
+    position: relative; 
+    z-index: 2;
+    padding:10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    background-color:#FFCFD2;
+    border-radius: 10px;
+    margin-left:10px;
+}
 .studyrm input{
     width: 80%;
     padding: 10px 10px; 
@@ -169,6 +187,27 @@ textarea:focus {
     background: #b9fbc0;
     font-size : 20px;
     border-radius: 10px;
+    border:0px;
+    margin-bottom: 100px;
+}
+.btn1{
+	
+	width: 45%; height:50px;
+    background: #b9fbc0;
+    font-size : 20px;
+    border-radius: 10px;
+    border:0px;
+		
+}
+
+.btn2{
+	
+	width: 45%; height:50px;
+    background: #b9fbc0;
+    font-size : 20px;
+    border-radius: 10px;
+    border:0px;
+		
 }
 .toggle input{
     display: none;

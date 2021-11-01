@@ -14,8 +14,7 @@
    
     <insert id="joinInsert" parameterType="org.ml129.domain.LoginVO">
        insert into users(user_id,user_pw,user_name,user_nickname,user_birthdate)
-       values (#{user_id},#{user_pw},#{user_name},#{user_nickname},#{user_birthdate})
-       
+       values (#{user_id},#{user_pw},#{user_name},#{user_nickname},#{user_birthdate})  
    </insert>
    
 </mapper>

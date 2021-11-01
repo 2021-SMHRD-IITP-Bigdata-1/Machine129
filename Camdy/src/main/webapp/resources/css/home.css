@@ -52,6 +52,21 @@
     font-weight: 700;
     border-width: 0px;
 }
+.cate-btn{
+    
+    
+    padding: 0 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 13px;
+    line-height: 26px;
+    outline: 0;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 50px;
+    font-weight: 700;
+    border-width: 0px;
+}
 .study-tab-btn{
     appearance: auto;
     margin: 10px;
@@ -79,9 +94,18 @@ li{
 .flex-item{
     align-items : center;
 }
-.table p{
+.pvalue{
     margin-left: 30px;
-    margin-top: -10px;
+    margin-top: -13px;
+    
+}
+
+.number{
+	background-color:#b9fbc0;
+	display:inline-block !important;
+	border-radius:10px;
+	padding:2px 8px;
+	
 }
 
 .sticky {
@@ -97,3 +121,75 @@ li{
   padding-top:12px;
   padding-left:12.5px;
 }
+
+.search {
+  display: inline-block;
+  position: fixed;
+  top: 70%;
+  left: 85%;
+  width: 70px;
+  height: 70px;
+  background: #b9fbc0;
+  border-radius:50%;
+  box-shadow: rgba(149, 157, 165, 0.4) 0px 10px 24px;
+  padding-top:12px;
+  padding-left:12.5px;
+}
+
+
+a{
+	color:#343a40;
+}
+
+
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.hidden2 {
+  display: none;
+  opacity: 0;
+}
+
+
+
+
+.appear {
+  animation: fade-in 1s;
+  animation-fill-mode: forwards;
+  display: flex;
+}
+
+.disappear {
+  animation: fade-out 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+button:focus {
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #FFCFD2;
+}
+
+
+

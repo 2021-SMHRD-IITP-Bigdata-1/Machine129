@@ -118,8 +118,23 @@ public class HomeController {
 		String user_id = (String) session.getAttribute("user_id");
 		List<StudyVO> list = bmapper.studyList();
 		List<StudyVO> mlist = bmapper.studyMyList(user_id);
+		List<StudyVO> nlist = bmapper.studyNewList();
+		List<StudyVO> lalist = bmapper.studylangList();
+		List<StudyVO> jlist = bmapper.studyjobList();
+		List<StudyVO> clist = bmapper.studycList();
+		List<StudyVO> olist = bmapper.studyoList();
+		List<StudyVO> ulist = bmapper.studyuList();
+		List<StudyVO> tlist = bmapper.studytcList();
+		
 		request.setAttribute("slist", list);
 		request.setAttribute("mlist", mlist);
+		request.setAttribute("nlist", nlist);
+		request.setAttribute("lalist", lalist);
+		request.setAttribute("jlist", jlist);
+		request.setAttribute("clist", clist);
+		request.setAttribute("olist", olist);
+		request.setAttribute("ulist", ulist);
+		request.setAttribute("tlist", tlist);
 				
 		
 		return "02home";

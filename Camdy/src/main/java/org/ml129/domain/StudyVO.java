@@ -20,6 +20,8 @@ public class StudyVO {
 	private int study_num;
 	private int study_mhour;
 	private String study_pw;
+	private int study_now;
+	private String study_cate;
 	
 	
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ml129.mapper.StudyMapper">
+
+
+
+<insert id="studyInsert" parameterType="org.ml129.domain.StudyVO">
+       insert into studies(study_title,study_content,study_start_date,study_end_date,user_id,study_num,study_mhour,study_pw,study_cate)
+       values (#{study_title},#{study_content},NOW(),#{study_end_date},#{user_id},4,#{study_mhour},#{study_pw},#{study_cate}) 
+</insert>
+
+</mapper>
