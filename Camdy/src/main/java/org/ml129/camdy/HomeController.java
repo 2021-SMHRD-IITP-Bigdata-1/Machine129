@@ -233,11 +233,7 @@ public class HomeController {
 		String user_nickname = req.getParameter("user_nickname");
 		String user_birthdate = req.getParameter("user_birthdate");
 	
-		
-		
-		
 
-		
 		
 		bmapper.joinInsert(user_id, user_pw, user_name, user_nickname,user_birthdate);
 		logger.info(user_id);

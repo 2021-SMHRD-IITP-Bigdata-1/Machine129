@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 
@@ -110,9 +111,22 @@ public class StudyController {
 		System.out.println(stvo);
 		model.addAttribute("stvo",stvo); //객체 바인딩
 
-		return "09detail";
+		return "09preview";
 
 	}
+	
+	@RequestMapping("/index.do")
+	public @ResponseBody List<StudyVO> index(@RequestParam String index) {
+		logger.info("검색 내용에 대한 DB 출력합니다.");
+		logger.info(index);
+		
+		List<StudyVO> ilist = smapper.studyindexlist(index);
+
+		return ilist;
+
+	}
+	
+	
 	
 	
 	

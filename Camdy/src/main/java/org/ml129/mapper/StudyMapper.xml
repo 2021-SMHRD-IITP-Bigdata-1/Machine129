@@ -11,4 +11,8 @@
        values (#{study_title},#{study_content},NOW(),#{study_end_date},#{user_id},4,#{study_mhour},#{study_pw},#{study_cate}) 
 </insert>
 
+<select id="studyindexlist" resultType="org.ml129.domain.StudyVO">
+    select * from studies where study_title like concat('%',#{index},'%')
+</select>
+
 </mapper>

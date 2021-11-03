@@ -16,6 +16,20 @@
     			
     	});
     	
+    	document.querySelector('.search2').addEventListener('click', function(){
+    	  document.querySelector('.index1').classList.remove('hide');
+    	});
+    	
+    	document.querySelector('.exit2').addEventListener('click', function(){
+    	  var view = "<p>검색결과가 없습니다.</p>"
+    	  document.querySelector('.index1').classList.add('hide');
+    	  $("#indexview").html(view);
+    	  document.getElementById('index').value=null;
+    	  
+    	  
+			
+    	});
+    	
     	
     document.querySelector('.newclick').addEventListener('click', function(){
     	  document.querySelector('.new').classList.remove('hide');
@@ -115,5 +129,11 @@
           document.querySelector('.uni').classList.add('hide');
 		
     	});
+    	
+    	
+
+
+
+    
 
     	

@@ -21,6 +21,8 @@ public interface StudyMapper {
 	@Select("select * from studies where study_seq = #{study_seq}")
 	public StudyVO studysVO(@Param("study_seq") int study_seq);
 
+	public List<StudyVO> studyindexlist(String index);
+
 	
 	
 	

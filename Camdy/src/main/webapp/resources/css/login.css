@@ -50,10 +50,11 @@ input{
    
 }
 
-input::placeholder {
-  color: #6c757d !important;
-  font-style: italic;
+input:focus {
+  outline:none;
 }
+
+
 
 
 

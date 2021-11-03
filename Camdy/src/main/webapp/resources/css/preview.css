@@ -1,0 +1,190 @@
+body{
+	background: #f5f6f7;
+	
+}
+
+#basic{
+    background: #f5f6f7;
+    position: absolute;
+    margin-left: 25%;
+}
+.previewm{
+    width: 1000px;
+    height: 600px;
+    border: solid 1px black;
+    margin-top: -30px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px gray;
+    justify-content: space-between;   
+}
+.previewm img{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+#previwvi{
+    position: absolute;
+    top: 215px;
+    left: 20px;
+    background-color: #b9fbc0;
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.prectr{
+    width: 1000px;
+    height: 100px;
+    border: solid 1px black;
+    border: none;
+    border-top: solid 1px black;
+    background-color: white;
+    text-align: center;
+}
+.previewm input{
+    width: 100%;
+    height: 490px;
+    text-align: center;
+    font-size: 30px;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.prectr button img{
+    width: 100px;
+    height: 78px;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+}
+.prectr button{
+    background-color: white;
+    border-radius: 10px;
+    font-size: 14px;
+    border: none;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    vertical-align:middle;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {display:none;}
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+  }
+  
+.slider.round:before {
+    border-radius: 50%;
+  }
+  
+.switch p {
+      margin:0px;
+      display:inline-block;
+  }
+.study-be{
+    text-align: left;
+    font-weight: 100;
+    font-size: 40px;
+}
+.in-btn button{
+        width: 13%;
+        height: 100px;
+        background: #b9fbc0;
+        font-size : 25px;
+        border-radius: 10px;
+        text-align: center;
+        padding: 4px;
+        cursor: pointer;
+        float:left;
+        border:0;
+        margin-left:20px;
+}
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder {
+    /* WebKit browsers */ color:transparent; }
+
+
+h6{
+  margin-top: -30px;
+}
+.previwvi img{
+  width: 50px;
+  height: 50px;
+}
+
+.pcard1{
+	background-color:#90dbf4;
+	width:32%;
+	height:100px;
+	border-radius: 10px;
+	float:left;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	
+	
+}
+
+.pcard2{
+	background-color:#8eecf5;
+	width:32%;
+	height:100px;
+	border-radius: 10px;
+	float:left;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	text-align: center;
+	
+}
+
+.pcard3{
+	background-color:#98f5e1;
+	width:17%;
+	height:100px;
+	border-radius: 10px;
+	float:left;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	
+}

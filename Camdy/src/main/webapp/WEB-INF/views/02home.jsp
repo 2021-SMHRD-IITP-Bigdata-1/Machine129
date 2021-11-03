@@ -16,7 +16,44 @@
 <link  href="${path}/resources/css/swiper-bundle.css" rel="stylesheet">
 <link  href="${path}/resources/css/swiper-bundle.min.css" rel="stylesheet">
 
+<script>
+function index(){
+	let index = document.getElementById('index');
+	console.log(index.value)
+		
+		$.ajax({
+			url: "${path}/index.do",
+			data:{"index":index.value},
+			//type:"get",
+			//data: {"test":"12345","key":111},
+			dataType: "json",
+			success : resultHtml,
+			error : function(){
+				alert("검색결과가 없습니다.");
+			}
+			
+		});
+	}
 
+function resultHtml(data){ 
+	
+	
+	var view = "<div>"
+	
+	$.each(data, function(index, obj){ 
+		if(!obj.study_cate){view+='<div style="font-size:13px;">📌&nbsp<a href="${path}/studygo.do?study_seq='+obj.study_seq+'"><b class="me-3">'+obj.study_title+'</b></a><p class="number" style="background-color:#fbf8cc !important; ">카테고리 없음</p></div>'
+		}else{view+='<div style="font-size:13px;">📌&nbsp<a href="${path}/studygo.do?study_seq='+obj.study_seq+'"><b class="me-3">'+obj.study_title+'</b></a><p class="number" style="background-color:#fbf8cc !important; ">'+obj.study_cate+'</p></div>'}
+			
+    		
+    	});
+	view += "</div>"
+	$("#indexview").html(view);
+
+}
+
+
+
+</script>
 </head>
 <body>
 
@@ -697,12 +734,34 @@
            
                            
     </div>
-	    <div class="sticky">
+	<div class="sticky">
 	    <a href="make"><img src="${path}/resources/image/add.png" height="45" alt="로고" /></a>
     </div>
+    
+	<div class="search">
+	    <button class="search2"><img src="${path}/resources/image/search.png" height="45" alt="로고" /></button>
     </div>
-	    <div class="search">
-	    <a href="make"><img src="${path}/resources/image/search.png" height="45" alt="로고" /></a>
+    
+    <div class="index1 hide">
+	<div class="index">
+		
+		<div class="mb-2" style="font-size:20px;"><b>스터디 방 검색</b></div>
+		
+	    <input id="index" type="text" class="mb-3" placeholder="스터디 방 이름 입력" >
+	    <button id="indexbtn" type="button" onclick="index()">🔍</button>
+	    
+	    
+	    <!-- ajax 구간 -->
+	    <div id="indexview">
+	    <p>검색 결과가 없습니다.</p>
+    	</div>
+    	<!-- ajax 구간 끝 -->
+    	
+    </div>
+    
+	<div class="exit">
+	    <button class="exit2"><img src="${path}/resources/image/close.png" height="25" alt="로고" /></button>
+    </div>
     </div>
     <br>
     <br>
@@ -717,20 +776,7 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
       
        
       
@@ -762,6 +808,7 @@
     <script src="${path}/resources/js/home.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 	function nshow(){
 		

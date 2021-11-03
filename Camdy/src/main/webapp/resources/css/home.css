@@ -123,7 +123,7 @@ li{
 }
 
 .search {
-  display: inline-block;
+  display: inline-block !important;
   position: fixed;
   top: 70%;
   left: 85%;
@@ -132,9 +132,50 @@ li{
   background: #b9fbc0;
   border-radius:50%;
   box-shadow: rgba(149, 157, 165, 0.4) 0px 10px 24px;
+  padding-top:10px;
+  padding-left:7px;
+}
+
+.index {
+  display: inline-block;
+  position: fixed;
+  bottom: 23%;
+  left: 70%;
+  width: 14.3%;
+  height: 50%;
+  background: #b9fbc0;
+  border-radius:5%;
+  box-shadow: rgba(149, 157, 165, 0.4) 0px 10px 24px;
   padding-top:12px;
   padding-left:12.5px;
 }
+
+.exit {
+  display: inline-block;
+  position: fixed;
+  top: 21.9%;
+  left: 82.5%;
+  width: 40px;
+  height: 40px;
+  background: #b9fbc0;
+  border-radius:10px;
+  padding-top:5px;
+  padding-left:1.8px;
+}
+
+input{
+   
+   background-color: #e9ecef;
+   border-width: 0px;
+   
+   
+}
+
+input::placeholder {
+  color: #6c757d !important;
+  font-style: italic;
+}
+
 
 
 a{
@@ -192,4 +233,46 @@ button:focus {
 }
 
 
+.search2{
+	background-color:transparent;
+	border:0;
+	outline:0;
+}
 
+.search2:focus{
+	background-color:transparent;
+	box-shadow: none;
+}
+
+.exit2{
+	background-color:transparent;
+	border:0;
+	outline:0;
+}
+
+.exit2:focus{
+	background-color:transparent;
+	box-shadow: none;
+}
+
+#indexbtn{
+	background-color:#fbf8cc;
+	border:0;
+	outline:0;
+	border-radius:10px;
+	
+}
+
+#indexview{
+	background-color:#ced4da;
+	width:95%; 
+	height:80%; 
+	border-radius:10px; 
+	padding:10px;
+}
+
+#index{
+	width:80%;
+	height:30px;
+	border-radius:10px; 
+}
