@@ -14,6 +14,8 @@
 <link  href="${path}/resources/css/swiper-bundle.min.css" rel="stylesheet">
 
 
+
+
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
@@ -171,6 +173,23 @@
           },
         
       });
+      
+      function logout(){
+          Swal.fire({
+            title: '로그아웃 하시겠습니까?',
+            text: "다시 돌아와주세요 :)",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '떠나기',
+            cancelButtonText: '취소'
+          }).then((result) => {
+            if (result.value) {
+             location.href="logout";
+            } 
+          })
+       }
     </script>
     
       

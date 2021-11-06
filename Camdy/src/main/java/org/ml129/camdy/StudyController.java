@@ -3,6 +3,8 @@ package org.ml129.camdy;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +12,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.ml129.domain.LoginVO;
+import org.ml129.domain.MystudyVO;
 import org.ml129.domain.StudyVO;
 import org.ml129.mapper.StudyMapper;
 import org.slf4j.Logger;
@@ -31,6 +35,7 @@ public class StudyController {
 	
 	@Autowired
 	private StudyMapper smapper;
+	
 	
 	
 	@RequestMapping("make")
@@ -95,21 +100,31 @@ public class StudyController {
 		
 		
 		req.setAttribute("camdylist", camdylist);
-		
+		session.setAttribute("user_id",user_id);
+
 		 
 		
-		return "09detail";
+		return "09preview";
 				
 	}
 	
 	
 	@RequestMapping("/studygo.do")
-	public String studygo(@RequestParam("study_seq") int study_seq, Model model) {
+	public String studygo(@RequestParam("study_seq") int study_seq, Model model, HttpServletRequest req) {
 		logger.info("채팅방 입장 전 화면 입니다.");
 		
 		StudyVO stvo = smapper.studysVO(study_seq);	
 		System.out.println(stvo);
+		List<LoginVO> onvo = smapper.onuser(study_seq);
+		System.out.println(onvo);
+		
+		//아이디 세션 값 가져오기//
+		HttpSession session = req.getSession();
+		String user_id = (String) session.getAttribute("user_id");
+		
 		model.addAttribute("stvo",stvo); //객체 바인딩
+		model.addAttribute("onvo",onvo);
+		session.setAttribute("user_id",user_id);
 
 		return "09preview";
 
@@ -121,10 +136,63 @@ public class StudyController {
 		logger.info(index);
 		
 		List<StudyVO> ilist = smapper.studyindexlist(index);
+		
 
 		return ilist;
 
 	}
+	
+	
+	@RequestMapping("video")
+	public String video(@RequestParam("study_seq") int study_seq, HttpServletRequest req) {
+		logger.info("공부 화상 채팅방입니다.");
+		
+		//아이디 세션 값 가져오기//
+		HttpSession session = req.getSession();
+		String user_id = (String) session.getAttribute("user_id");
+		
+		
+		System.out.println(user_id);
+		System.out.println(study_seq);
+		
+		// 참여했던 방인지, 아닌지 확인하고 현재 참여 중으로 바꾸기.//
+		List<MystudyVO> mylist = smapper.mystudy(user_id);
+		
+		
+		int a = 0;
+		for(int i=0; i<mylist.size(); i++) {
+			
+			if(mylist.get(i).getStudy_seq() == study_seq) {
+				
+				smapper.changemylist(study_seq);
+				
+			}else {
+				a++;
+			}
+		}
+		
+		if(a == mylist.size()) {
+			
+			smapper.insertmylist(user_id,study_seq);
+		}
+		
+
+		
+		
+		LocalTime now_for = LocalTime.now();
+		System.out.println(now_for);
+		DateTimeFormatter nowformatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+		String study_now = now_for.format(nowformatter);
+
+		session.setAttribute("study_now",study_now);
+		session.setAttribute("study_now_start", now_for);
+		session.setAttribute("study_seq", study_seq);
+
+		return "10video";
+
+	}
+	
+	
 	
 	
 	

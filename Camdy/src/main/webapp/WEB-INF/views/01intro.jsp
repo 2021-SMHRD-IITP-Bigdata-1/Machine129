@@ -14,6 +14,10 @@
 <link  href="${path}/resources/css/swiper-bundle.css" rel="stylesheet">
 <link  href="${path}/resources/css/swiper-bundle.min.css" rel="stylesheet">
 
+<!-- beautiful popup -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 
 </head>
 <body>
@@ -58,7 +62,7 @@
             <c:when test="${user_id != null}">
             	<div class="me-2 ms-4"><a href="#!"><img src="${path}/resources/image/user.png" height="40" alt="마이페이지" /></a></div>
             	<div class="me-4"><b>${user_nickname}</b>님 환영합니다.</div>
-            	<a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" href="logout" style="">&nbsp로그아웃&nbsp</a>
+            	<a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" onclick="logout()">&nbsp로그아웃&nbsp</a>
             </c:when> 
             </c:choose>
 
@@ -165,6 +169,24 @@
           },
         
       });
+      
+      function logout(){
+          Swal.fire({
+            title: '로그아웃 하시겠습니까?',
+            text: "다시 돌아와주세요 :)",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '떠나기',
+            cancelButtonText: '취소'
+          }).then((result) => {
+            if (result.value) {
+             location.href="logout";
+            } 
+          })
+       }
+        
     </script>
     
       

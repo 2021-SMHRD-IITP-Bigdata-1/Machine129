@@ -15,4 +15,22 @@
     select * from studies where study_title like concat('%',#{index},'%')
 </select>
 
+<update id="changemylist" parameterType="org.ml129.domain.MystudyVO">
+    UPDATE mystudies SET my_now = 1 WHERE (my_now = 0 and study_seq=#{study_seq});    
+</update>
+
+<insert id="insertmylist" parameterType="org.ml129.domain.MystudyVO">
+    insert into mystudies(user_id,study_seq,my_now) values(#{user_id},#{study_seq},1)
+</insert>
+
+<update id="outmystudies" parameterType="org.ml129.domain.MystudyVO">
+    UPDATE mystudies SET my_now = 0 WHERE (my_now = 1 and study_seq=#{study_seq});    
+</update>
+
+<insert id="addtimes" parameterType="org.ml129.domain.TimeVO">
+    insert into times values(#{user_id},NOW(),#{time_start},#{time_end},#{time_sum})
+</insert>
+
+
+
 </mapper>

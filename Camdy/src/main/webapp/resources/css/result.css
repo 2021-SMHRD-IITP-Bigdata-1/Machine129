@@ -1,0 +1,74 @@
+@charset "UTF-8";
+@font-face {
+     font-family: 'S-CoreDream-4Regular';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+html {
+    height: 100%;
+    font-family: 'S-CoreDream-4Regular';
+}
+body{
+    background: #f5f6f7;
+    position: relative;
+    width: 600px;
+    height: 500px;
+    margin:0 auto;
+    margin-top: 90px;
+}
+.time p{
+    text-align: center;
+    font-size: 25px;
+}
+.rank-itemim{
+    border: solid 1px rgb(175, 174, 174);
+    width: 90%;
+    height: 90px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 5px 5px 5px gray;
+    margin: 20px;
+}
+.outbtn button{
+    width: 40%;
+    height: 60px;
+    background: #b9fbc0;
+    font-size : 30px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 180px;
+}
+.rank-itemim img{
+    width: 70px;
+    height: 70px;
+    float: left;
+    vertical-align:middle;
+    padding-top: 13px;
+    margin-left: 15px;
+}   
+.rank-itemim p{
+    vertical-align:middle;
+    display: flex;
+    text-align: center;
+    padding-left: 130px;
+    padding-top: 5px;
+    font-size: 25px;
+    }
+.flex-item{
+    align-items : center;
+}
+.score {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 70px;
+    margin-bottom: 80px;
+}
+.rank-item{
+    text-align: center;
+    font-size: 30px;
+}
+
+

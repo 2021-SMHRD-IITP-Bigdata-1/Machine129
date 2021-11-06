@@ -179,6 +179,7 @@ public class HomeController {
 		LoginVO vo = bmapper.LoginCheck(user_id, user_pw);
 		
 		
+		
 		if(vo==null) {
 			
 			return "01intro";
@@ -213,7 +214,7 @@ public class HomeController {
 	//---------- 회원가입 페이지 Controller ----------
 	@RequestMapping("join") 
 	public String joinPage() { 
-		logger.info("회원가입 페이지입니다.");
+ 		logger.info("회원가입 페이지입니다.");
 		
 		return "04join";
 		
@@ -246,6 +247,17 @@ public class HomeController {
 		return "redirect:/login";
 				
 	}
+	
+	//// flask 테스트중 ////
+	
+	@RequestMapping("parksee")
+	   public String parksee() {
+	      logger.info("캡쳐 실험 페이지");
+	      
+	      return "parksee";
+	   }
+	
+	
 		
 			
 

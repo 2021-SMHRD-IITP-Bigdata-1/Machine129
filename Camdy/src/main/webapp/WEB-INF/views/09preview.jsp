@@ -21,9 +21,9 @@
           </div>
         </div>
  	</header>
-	<form>
+	
 			<div id="basic">
-	            <div class="study-be mt-4 mb-3">
+	            <div class="study-be mb-3">
 	                    <h5 class="mb-6"><b style="background-color:#b9fbc0;">"
 	                    	<c:choose>
 	                    		<c:when test="${!empty camdylist}">
@@ -76,64 +76,79 @@
 					    	<c:when test="${!empty camdylist}">
 							    <c:forEach var="vo" items="${camdylist}">
 							    	<span class="m-3">종료 날짜</span>
-								    <b><p class="mt-2" style="font-size:20px; text-align: center;">${vo.study_end_date}</p></b>  
+								    <b><p class="mt-4" style="font-size:20px; text-align: center;">${vo.study_end_date}</p></b>  
 							    </c:forEach>
 							</c:when>
 							<c:otherwise>
 								<span class="m-3">종료 날짜</span>
-								<b><p class="mt-2" style="font-size:20px; text-align: center;">${stvo.study_end_date}</p></b>
+								<b><p class="mt-4" style="font-size:20px; text-align: center;">${stvo.study_end_date}</p></b>
 							</c:otherwise>
 						</c:choose>
 	          		
 	          		</div>
 	          		
 	          		<div class="pcard2 ms-3">
-	          			<c:choose>
-					    	<c:when test="${!empty camdylist}">
-							    <c:forEach var="vo" items="${camdylist}">
-								    <p>참가 인원 : ${vo.study_now}/${vo.study_num}</p>  
-							    </c:forEach>
-							</c:when>
-							<c:otherwise>
-									<p>참가 인원 : ${stvo.study_now}/${stvo.study_num}</p>
-							</c:otherwise>
-						</c:choose>
+	          			
+						<p>현재 접속 인원 : ${fn:length(onvo)}/4</p>  
+							    
+						
+						<c:forEach var="vo" items="${onvo}">
+								    🧍${vo.user_nickname}<br> 
+						</c:forEach>
+						
 	          		
 	          		</div>
-	          		<div class="pcard3 ms-3">
+	          		<div class="pcard3 ms-3" style="margin-bottom:40px;">
+	          			<span class="m-3">목표 시간</span>
 	          			<c:choose>
 					    	<c:when test="${!empty camdylist}">
 							    <c:forEach var="vo" items="${camdylist}">
-								    <p>${vo.study_mhour}시간</p>  
+								    <b><p class="mt-4" style="font-size:20px; text-align: center;">${vo.study_mhour}시간</p></b>  
 							    </c:forEach>
 							</c:when>
 							<c:otherwise>
-									<p>${stvo.study_mhour}시간</p>
+									<b><p class="mt-4" style="font-size:20px; text-align: center;">${stvo.study_mhour}시간</p></b>
 							</c:otherwise>
 						</c:choose>
 	          		
 	          		</div>
 	          		<div class="in-btn">
-	                	<button type="submit">👋입장</button>
+	          			<c:choose>
+					    	<c:when test="${!empty camdylist}">
+							    <c:forEach var="vo" items="${camdylist}">
+								    <button type="submit" onclick="location.href='video?study_seq=${vo.study_seq}'">👋입장</button>  
+							    </c:forEach>
+							</c:when>
+							<c:otherwise>
+									<button type="submit" onclick="location.href='video?study_seq=${stvo.study_seq}'">👋입장</button>
+							</c:otherwise>
+						</c:choose>
+	          		
+	          		
+	          		
+	                	
 	          		</div>
 	          	
-
+				
+			
 		        </div>
+		        
+		        
+        		<input type="hidden" id="user_id" name="user_id" value=${user_id} >
 		        
 		        
 	          	</div>
 	          	<!-- 끝 -->
-        </form> 
+         
         
-
-    
-    
-    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script src="${path}/resources/js/preview.js"></script>
-    
+    <script>
+    let id = document.getElementById('user_id');
+	console.log(id.value);
+    </script>
 </body>
 
 </html>
