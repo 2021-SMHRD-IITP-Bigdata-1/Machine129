@@ -60,7 +60,7 @@
             	<a class="btn-g btn-primary order-1 order-lg-0 font-1" href="login" style="">&nbsp스터디 참여하기&nbsp</a>
             </c:when> 
             <c:when test="${user_id != null}">
-            	<div class="me-2 ms-4"><a href="#!"><img src="${path}/resources/image/user.png" height="40" alt="마이페이지" /></a></div>
+            	<div class="me-2 ms-4"><a href="mypage"><img src="${path}/resources/image/user.png" height="40" alt="마이페이지" /></a></div>
             	<div class="me-4"><b>${user_nickname}</b>님 환영합니다.</div>
             	<a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" onclick="logout()">&nbsp로그아웃&nbsp</a>
             </c:when> 

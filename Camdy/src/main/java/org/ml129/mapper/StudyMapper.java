@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.ml129.domain.TimeVO;
+import org.ml129.domain.outsVO;
+import org.ml129.domain.PhonesVO;
 import org.ml129.domain.LoginVO;
 import org.ml129.domain.MystudyVO;
 import org.ml129.domain.StudyVO;
@@ -43,6 +46,42 @@ public interface StudyMapper {
 
 	// 시간 데이터 저장
 	public void addtimes(@Param("user_id") String user_id, @Param("time_start") String time_start, @Param("time_end") String time_end, @Param("time_sum") int time_sum);
+
+	// 어제 시간 데이터 가져오기
+	public List<TimeVO> timebefore(@Param("user_id") String user_id);
+
+	// 오늘 총 시간 가져오기
+	@Select("select today_date, sum(time_sum) as time_sum from times where today_date= date_format(now(),'%Y-%m-%d') and user_id = #{user_id} group by today_date;")
+	public TimeVO totalstudy(@Param("user_id") String user_id);
+
+	// 휴대폰 총 시간 가져오기
+	@Select("select today_date, sum(phone_sum) as phone_sum from phones where today_date= date_format(now(),'%Y-%m-%d') and user_id = #{user_id} and phone_start > #{time_start} group by today_date;")
+	public PhonesVO phonestudy(@Param("user_id") String user_id, @Param("time_start") String time_start);
+
+	@Select("select today_date, sum(out_sum) as out_sum from outs where today_date= date_format(now(),'%Y-%m-%d') and user_id = #{user_id} and out_start > #{time_start} group by today_date;")
+	public outsVO outstudy(@Param("user_id") String user_id, @Param("time_start") String time_start);
+
+	/////////// 마이페이지 Mapper ///////
+	// 1)이번 주 평균 시간
+	@Select("SELECT avg(time_sum) as time_sum FROM times where user_id= '${user_id}' and today_date BETWEEN DATE_FORMAT(NOW()- INTERVAL 6 DAY,'%Y-%m-%d') and now();")
+	public TimeVO weekavg(@Param("user_id") String user_id);
+	
+	// 2)이번 주 총 시간
+	@Select("SELECT sum(time_sum) as time_sum FROM times where user_id= '${user_id}' and today_date BETWEEN DATE_FORMAT(NOW()- INTERVAL 6 DAY,'%Y-%m-%d') and now();")
+	public TimeVO weektotal(@Param("user_id") String user_id);
+
+	//3) 이번 주 순 공부시간
+	@Select("SELECT sum(phone_sum) as phone_sum FROM phones where user_id= '${user_id}' and today_date BETWEEN DATE_FORMAT(NOW()- INTERVAL 6 DAY,'%Y-%m-%d') and now();")
+	public PhonesVO weekphone(@Param("user_id") String user_id);
+
+	@Select("SELECT sum(out_sum) as out_sum FROM outs where user_id= '${user_id}' and today_date BETWEEN DATE_FORMAT(NOW()- INTERVAL 6 DAY,'%Y-%m-%d') and now();")
+	public outsVO weekout(@Param("user_id") String user_id);
+
+	//4) 캠디와 함께한 시간
+	@Select("SELECT sum(time_sum) as time_sum FROM times where user_id= '${user_id}'")
+	public TimeVO totaltime(@Param("user_id") String user_id);
+	
+	
 
 
 

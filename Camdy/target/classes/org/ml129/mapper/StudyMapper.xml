@@ -27,9 +27,16 @@
     UPDATE mystudies SET my_now = 0 WHERE (my_now = 1 and study_seq=#{study_seq});    
 </update>
 
+<!-- Time 결과창 -->
 <insert id="addtimes" parameterType="org.ml129.domain.TimeVO">
     insert into times values(#{user_id},NOW(),#{time_start},#{time_end},#{time_sum})
 </insert>
+
+<select id="timebefore" resultType="org.ml129.domain.TimeVO">
+    select * from times where today_date = DATE_FORMAT(NOW()- INTERVAL 1 DAY,'%Y-%m-%d');
+</select>
+
+
 
 
 

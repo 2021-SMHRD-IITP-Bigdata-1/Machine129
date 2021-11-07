@@ -132,6 +132,7 @@
 
               document.getElementById("time").innerHTML = th + ":" + tm + ":" + ts;
             }, 1000);
+            
           // start btn => 시작되야함.
           document.getElementById("startbtn").addEventListener("click",cap);
           

@@ -108,6 +108,19 @@ public class StudyController {
 				
 	}
 	
+	@RequestMapping("/studygo_check.do")
+	   public String studygo_check(@RequestParam("study_seq") int study_seq, Model model, HttpServletRequest req) {
+	      logger.info("채팅방 입장 전 비밀번호 체크 화면 입니다.");
+	      
+	      StudyVO vo = smapper.studysVO(study_seq);   
+	      System.out.println(vo);
+	      
+	      model.addAttribute("vo",vo); //객체 바인딩
+	      
+	      return "09preview_pwcheck";
+
+	   }
+	   
 	
 	@RequestMapping("/studygo.do")
 	public String studygo(@RequestParam("study_seq") int study_seq, Model model, HttpServletRequest req) {

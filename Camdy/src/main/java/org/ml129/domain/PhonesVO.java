@@ -9,12 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TimeVO {
-	
+public class PhonesVO {
 	public String user_id;
 	public Date today_date;
-	public String time_start;
-	public String time_end;
-	public int time_sum;
-
+	public String phone_start;
+	public String phone_end;
+	public int phone_sum;
+	public int phone_seq;
 }

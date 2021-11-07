@@ -22,36 +22,36 @@
 
 <script>
 function index(){
-	let index = document.getElementById('index');
-	console.log(index.value)
-		
-		$.ajax({
-			url: "${path}/index.do",
-			data:{"index":index.value},
-			//type:"get",
-			//data: {"test":"12345","key":111},
-			dataType: "json",
-			success : resultHtml,
-			error : function(){
-				alert("검색결과가 없습니다.");
-			}
-			
-		});
-	}
+   let index = document.getElementById('index');
+   console.log(index.value)
+      
+      $.ajax({
+         url: "${path}/index.do",
+         data:{"index":index.value},
+         //type:"get",
+         //data: {"test":"12345","key":111},
+         dataType: "json",
+         success : resultHtml,
+         error : function(){
+            alert("검색결과가 없습니다.");
+         }
+         
+      });
+   }
 
 function resultHtml(data){ 
-	
-	
-	var view = "<div>"
-	
-	$.each(data, function(index, obj){ 
-		if(!obj.study_cate){view+='<div style="font-size:13px;">📌&nbsp<a href="${path}/studygo.do?study_seq='+obj.study_seq+'"><b class="me-3">'+obj.study_title+'</b></a><p class="number" style="background-color:#fbf8cc !important; ">카테고리 없음</p></div>'
-		}else{view+='<div style="font-size:13px;">📌&nbsp<a href="${path}/studygo.do?study_seq='+obj.study_seq+'"><b class="me-3">'+obj.study_title+'</b></a><p class="number" style="background-color:#fbf8cc !important; ">'+obj.study_cate+'</p></div>'}
-			
-    		
-    	});
-	view += "</div>"
-	$("#indexview").html(view);
+   
+   
+   var view = "<div>"
+   
+   $.each(data, function(index, obj){ 
+      if(!obj.study_cate){view+='<div style="font-size:13px;">📌&nbsp<a href="${path}/studygo.do?study_seq='+obj.study_seq+'"><b class="me-3">'+obj.study_title+'</b></a><p class="number" style="background-color:#fbf8cc !important; ">카테고리 없음</p></div>'
+      }else{view+='<div style="font-size:13px;">📌&nbsp<a href="${path}/studygo.do?study_seq='+obj.study_seq+'"><b class="me-3">'+obj.study_title+'</b></a><p class="number" style="background-color:#fbf8cc !important; ">'+obj.study_cate+'</p></div>'}
+         
+          
+       });
+   view += "</div>"
+   $("#indexview").html(view);
 
 }
 
@@ -95,13 +95,13 @@ function resultHtml(data){
             </ul>
             <c:choose>
             <c:when test="${user_id == null}">
-            	<a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" href="login" style="">&nbsp로그인&nbsp</a>
-            	<a class="btn-g btn-primary order-1 order-lg-0 font-1" href="login" style="">&nbsp스터디 참여하기&nbsp</a>
+               <a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" href="login" style="">&nbsp로그인&nbsp</a>
+               <a class="btn-g btn-primary order-1 order-lg-0 font-1" href="login" style="">&nbsp스터디 참여하기&nbsp</a>
             </c:when> 
             <c:when test="${user_id != null}">
-            	<div class="me-2 ms-4"><a href="#!"><img src="${path}/resources/image/user.png" height="40" alt="마이페이지" /></a></div>
-            	<div class="me-4"><b>${user_nickname}</b>님 환영합니다.</div>
-            	<a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" onclick="logout()" style="">&nbsp로그아웃&nbsp</a>
+               <div class="me-2 ms-4"><a href="mypage"><img src="${path}/resources/image/user.png" height="40" alt="마이페이지" /></a></div>
+               <div class="me-4"><b>${user_nickname}</b>님 환영합니다.</div>
+               <a class="btn-g btn-primary order-1 order-lg-0 font-1 me-2" onclick="logout()" style="">&nbsp로그아웃&nbsp</a>
             </c:when> 
             </c:choose>
 
@@ -125,10 +125,10 @@ function resultHtml(data){
             <c:choose>
             <c:when test="${empty mlist}">
             
-	             <div class="study-item mb-8">
-	                <p class="study-item-tx"><h4>내 스터디는 내가 만든 스터디 또는<br>초대 받은 스터디가 등록됩니다</h4></p>
-	                <p class="study-item-tn">스터디 만들기에서 내 스터디를 만들어 보세요✋</p>
-	             </div>
+                <div class="study-item mb-8">
+                   <p class="study-item-tx"><h4>내 스터디는 내가 만든 스터디 또는<br>초대 받은 스터디가 등록됩니다</h4></p>
+                   <p class="study-item-tn">스터디 만들기에서 내 스터디를 만들어 보세요✋</p>
+                </div>
              
              </c:when>
              <c:otherwise>
@@ -136,61 +136,61 @@ function resultHtml(data){
              <div>
              
              <table class="table">
-             	<tr>
-             		<td width=296px></td>
-             		<td width=296px></td>
-             		<td width=296px></td>
-             		<td width=296px></td>
-             		<td width=296px></td>
-             		    		
+                <tr>
+                   <td width=296px></td>
+                   <td width=296px></td>
+                   <td width=296px></td>
+                   <td width=296px></td>
+                   <td width=296px></td>
+                             
 
-             	</tr>
+                </tr>
 
-            	<c:forEach var="i" begin="0" end="${fn:length(mlist)+1/5}" step="5">
+               <c:forEach var="i" begin="0" end="${fn:length(mlist)+1/5}" step="5">
                 <tr>
                     <c:forEach var="vo" items="${mlist}" begin="${i}" end="${i+4}">
                     <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
-                    	
+                       
                         <p>
                         <c:choose>
-	                        <c:when test="${fn:length(vo.study_title) gt 15}">
-		                        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
-		                    </c:when>
-		                    <c:otherwise>
-						        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
-						    </c:otherwise>
-		                 </c:choose>
-		                 
+                           <c:when test="${fn:length(vo.study_title) gt 15}">
+                              <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                          </c:when>
+                          <c:otherwise>
+                          <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                      </c:otherwise>
+                       </c:choose>
+                       
                         </p>
                         <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
                         
                         <!-- 카테고리  begin -->
-		                <c:choose>
-		                	<c:when test="${vo.study_cate != null}">
-		                		<c:choose>
-		                			<c:when test="${vo.study_cate == '어학'}">
-				                         <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '취업'}">
-				                         <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '자격증'}">
-				                         <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '공무원'}">
-				                         <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '대입 수능'}">
-				                         <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:otherwise>
-				                         <p class="number" style="background-color:#FDE4CF !important;">👩‍🏫&nbsp${vo.study_cate}</p>
-				                    </c:otherwise>
-		                        </c:choose>
-                         	</c:when>
-		                </c:choose>     
-		                <!-- 카테고리 end -->  
-		                
+                      <c:choose>
+                         <c:when test="${vo.study_cate != null}">
+                            <c:choose>
+                               <c:when test="${vo.study_cate == '어학'}">
+                                     <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '취업'}">
+                                     <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '자격증'}">
+                                     <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '공무원'}">
+                                     <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '대입 수능'}">
+                                     <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="number" style="background-color:#FDE4CF !important;">🏫&nbsp${vo.study_cate}</p>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:when>
+                      </c:choose>     
+                      <!-- 카테고리 end -->  
+                      
                     </td>
                     </c:forEach>
                 </tr>
@@ -248,7 +248,7 @@ function resultHtml(data){
                         <button type="button" class="cate-btn uniclick" style="background-color:#F1C0E8 !important;">✍️대입수능</button>
                     </li>
                     <li class="study-tab-btn flex-item">
-                        <button type="button" class="cate-btn teacherclick" style="background-color:#FDE4CF !important;">👩‍🏫임용</button>
+                        <button type="button" class="cate-btn teacherclick" style="background-color:#FDE4CF !important;">🏫임용</button>
                     </li>
                     
                 </ul>
@@ -258,50 +258,72 @@ function resultHtml(data){
             <!-- /////////////////////// 전체보기 /////////////////////// -->
             
             <table class="table all">
-            	<c:forEach var="i" begin="0" end="${fn:length(slist)+1/5}" step="5">
+               <c:forEach var="i" begin="0" end="${fn:length(slist)+1/5}" step="5">
                 <tr>
                     <c:forEach var="vo" items="${slist}" begin="${i}" end="${i+4}">
-                    <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
-                    	
+                    
+                    <c:choose>
+                        <c:when test="${!empty vo.study_pw}">
+                           <td><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                       </c:when>
+                       <c:otherwise>
+                       <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                   </c:otherwise>
+                  </c:choose>
+                       
                         <p>
                         <c:choose>
-	                        <c:when test="${fn:length(vo.study_title) gt 15}">
-		                        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
-		                    </c:when>
-		                    <c:otherwise>
-						        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
-						    </c:otherwise>
-		                 </c:choose>
-		                 </p>
-		                 <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
-		                 
-		                <!-- 카테고리  begin -->
-		                <c:choose>
-		                	<c:when test="${vo.study_cate != null}">
-		                		<c:choose>
-		                			<c:when test="${vo.study_cate == '어학'}">
-				                         <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '취업'}">
-				                         <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '자격증'}">
-				                         <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '공무원'}">
-				                         <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '대입 수능'}">
-				                         <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:otherwise>
-				                         <p class="number" style="background-color:#FDE4CF !important;">👩‍🏫&nbsp${vo.study_cate}</p>
-				                    </c:otherwise>
-		                        </c:choose>
-                         	</c:when>
-		                </c:choose>     
-		                <!-- 카테고리 end -->   
-		                                    
+                           <c:when test="${fn:length(vo.study_title) gt 15}">
+                               <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                    <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                          </c:when>
+                          <c:otherwise>
+                             <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                   <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                      </c:otherwise>
+                       </c:choose>
+                       </p>
+                       <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
+                       
+                      <!-- 카테고리  begin -->
+                      <c:choose>
+                         <c:when test="${vo.study_cate != null}">
+                            <c:choose>
+                               <c:when test="${vo.study_cate == '어학'}">
+                                     <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '취업'}">
+                                     <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '자격증'}">
+                                     <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '공무원'}">
+                                     <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '대입 수능'}">
+                                     <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="number" style="background-color:#FDE4CF !important;">🏫&nbsp${vo.study_cate}</p>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:when>
+                      </c:choose>     
+                      <!-- 카테고리 end -->   
+                                          
                     </td>
                     </c:forEach>
                 </tr>
@@ -311,56 +333,77 @@ function resultHtml(data){
            <!-- /////////////////////// 신규 스터디 /////////////////////// -->
            
            <table class="table new hide">
-           		<tr>
-           		<c:forEach var="i" begin="0" end="5" >
-             		<td width=296px></td>
-             	</c:forEach>
+                 <tr>
+                 <c:forEach var="i" begin="0" end="5" >
+                   <td width=296px></td>
+                </c:forEach>
 
-             	</tr>
-            	<c:forEach var="i" begin="0" end="${fn:length(nlist)+1/5}" step="5">
+                </tr>
+               <c:forEach var="i" begin="0" end="${fn:length(nlist)+1/5}" step="5">
                 <tr>
                     <c:forEach var="vo" items="${nlist}" begin="${i}" end="${i+4}">
-                    <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
-                    	
+                       <c:choose>
+                           <c:when test="${!empty vo.study_pw}">
+                              <td><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                      </c:otherwise>
+                     </c:choose>
+                    
                         <p>
                         <c:choose>
-	                        <c:when test="${fn:length(vo.study_title) gt 15}">
-		                        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
-		                    </c:when>
-		                    <c:otherwise>
-						        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
-						    </c:otherwise>
-		                 </c:choose>
-		                 </p>
-		                 <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
-		                 
-		                <!-- 카테고리  begin -->
-		                <c:choose>
-		                	<c:when test="${vo.study_cate != null}">
-		                		<c:choose>
-		                			<c:when test="${vo.study_cate == '어학'}">
-				                         <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '취업'}">
-				                         <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '자격증'}">
-				                         <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '공무원'}">
-				                         <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '대입 수능'}">
-				                         <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:otherwise>
-				                         <p class="number" style="background-color:#FDE4CF !important;">👩‍🏫&nbsp${vo.study_cate}</p>
-				                    </c:otherwise>
-		                        </c:choose>
-                         	</c:when>
-		                </c:choose>     
-		                <!-- 카테고리 end -->   
-		                                    
+                           <c:when test="${fn:length(vo.study_title) gt 15}">
+                              <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                    <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                          </c:when>
+                          <c:otherwise>
+                          <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                   <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                      </c:otherwise>
+                       </c:choose>
+                       </p>
+                       <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
+                       
+                      <!-- 카테고리  begin -->
+                      <c:choose>
+                         <c:when test="${vo.study_cate != null}">
+                            <c:choose>
+                               <c:when test="${vo.study_cate == '어학'}">
+                                     <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '취업'}">
+                                     <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '자격증'}">
+                                     <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '공무원'}">
+                                     <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '대입 수능'}">
+                                     <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="number" style="background-color:#FDE4CF !important;">🏫&nbsp${vo.study_cate}</p>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:when>
+                      </c:choose>     
+                      <!-- 카테고리 end -->   
+                                          
                     </td>
                     </c:forEach>
                 </tr>
@@ -371,56 +414,77 @@ function resultHtml(data){
            <!-- /////////////////////// 1.어학 /////////////////////// -->
            
            <table class="table lang hide">
-           		<tr>
-           		<c:forEach var="i" begin="0" end="5" >
-             		<td width=296px></td>
-             	</c:forEach>
+                 <tr>
+                 <c:forEach var="i" begin="0" end="5" >
+                   <td width=296px></td>
+                </c:forEach>
 
-             	</tr>
-            	<c:forEach var="i" begin="0" end="${fn:length(lalist)+1/5}" step="5">
+                </tr>
+               <c:forEach var="i" begin="0" end="${fn:length(lalist)+1/5}" step="5">
                 <tr>
                     <c:forEach var="vo" items="${lalist}" begin="${i}" end="${i+4}">
-                    <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
-                    	
+                          <c:choose>
+                           <c:when test="${!empty vo.study_pw}">
+                              <td><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                      </c:otherwise>
+                      </c:choose>
+                       
                         <p>
                         <c:choose>
-	                        <c:when test="${fn:length(vo.study_title) gt 15}">
-		                        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
-		                    </c:when>
-		                    <c:otherwise>
-						        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
-						    </c:otherwise>
-		                 </c:choose>
-		                 </p>
-		                 <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
-		                 
-		                <!-- 카테고리  begin -->
-		                <c:choose>
-		                	<c:when test="${vo.study_cate != null}">
-		                		<c:choose>
-		                			<c:when test="${vo.study_cate == '어학'}">
-				                         <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '취업'}">
-				                         <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '자격증'}">
-				                         <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '공무원'}">
-				                         <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '대입 수능'}">
-				                         <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:otherwise>
-				                         <p class="number" style="background-color:#FDE4CF !important;">👩‍🏫&nbsp${vo.study_cate}</p>
-				                    </c:otherwise>
-		                        </c:choose>
-                         	</c:when>
-		                </c:choose>     
-		                <!-- 카테고리 end -->   
-		                                    
+                           <c:when test="${fn:length(vo.study_title) gt 15}">
+                              <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                    <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                          </c:when>
+                          <c:otherwise>
+                          <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                   <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                      </c:otherwise>
+                       </c:choose>
+                       </p>
+                       <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
+                       
+                      <!-- 카테고리  begin -->
+                      <c:choose>
+                         <c:when test="${vo.study_cate != null}">
+                            <c:choose>
+                               <c:when test="${vo.study_cate == '어학'}">
+                                     <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '취업'}">
+                                     <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '자격증'}">
+                                     <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '공무원'}">
+                                     <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '대입 수능'}">
+                                     <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="number" style="background-color:#FDE4CF !important;">🏫&nbsp${vo.study_cate}</p>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:when>
+                      </c:choose>     
+                      <!-- 카테고리 end -->   
+                                          
                     </td>
                     </c:forEach>
                 </tr>
@@ -431,56 +495,77 @@ function resultHtml(data){
            <!-- /////////////////////// 2.취업 /////////////////////// -->
            
            <table class="table job hide">
-           		<tr>
-           		<c:forEach var="i" begin="0" end="5" >
-             		<td width=296px></td>
-             	</c:forEach>
+                 <tr>
+                 <c:forEach var="i" begin="0" end="5" >
+                   <td width=296px></td>
+                </c:forEach>
 
-             	</tr>
-            	<c:forEach var="i" begin="0" end="${fn:length(jlist)+1/5}" step="5">
+                </tr>
+               <c:forEach var="i" begin="0" end="${fn:length(jlist)+1/5}" step="5">
                 <tr>
                     <c:forEach var="vo" items="${jlist}" begin="${i}" end="${i+4}">
-                    <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
-                    	
+                          <c:choose>
+                           <c:when test="${!empty vo.study_pw}">
+                              <td><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                      </c:otherwise>
+                      </c:choose>
+                       
                         <p>
                         <c:choose>
-	                        <c:when test="${fn:length(vo.study_title) gt 15}">
-		                        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
-		                    </c:when>
-		                    <c:otherwise>
-						        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
-						    </c:otherwise>
-		                 </c:choose>
-		                 </p>
-		                 <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
-		                 
-		                <!-- 카테고리  begin -->
-		                <c:choose>
-		                	<c:when test="${vo.study_cate != null}">
-		                		<c:choose>
-		                			<c:when test="${vo.study_cate == '어학'}">
-				                         <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '취업'}">
-				                         <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '자격증'}">
-				                         <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '공무원'}">
-				                         <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '대입 수능'}">
-				                         <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:otherwise>
-				                         <p class="number" style="background-color:#FDE4CF !important;">👩‍🏫&nbsp${vo.study_cate}</p>
-				                    </c:otherwise>
-		                        </c:choose>
-                         	</c:when>
-		                </c:choose>     
-		                <!-- 카테고리 end -->   
-		                                    
+                           <c:when test="${fn:length(vo.study_title) gt 15}">
+                              <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                    <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                          </c:when>
+                          <c:otherwise>
+                          <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                   <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                      </c:otherwise>
+                       </c:choose>
+                       </p>
+                       <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
+                       
+                      <!-- 카테고리  begin -->
+                      <c:choose>
+                         <c:when test="${vo.study_cate != null}">
+                            <c:choose>
+                               <c:when test="${vo.study_cate == '어학'}">
+                                     <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '취업'}">
+                                     <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '자격증'}">
+                                     <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '공무원'}">
+                                     <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '대입 수능'}">
+                                     <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="number" style="background-color:#FDE4CF !important;">🏫&nbsp${vo.study_cate}</p>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:when>
+                      </c:choose>     
+                      <!-- 카테고리 end -->   
+                                          
                     </td>
                     </c:forEach>
                 </tr>
@@ -491,56 +576,77 @@ function resultHtml(data){
            <!-- /////////////////////// 3.자격증 /////////////////////// -->
            
            <table class="table cer hide">
-           		<tr>
-           		<c:forEach var="i" begin="0" end="5" >
-             		<td width=296px></td>
-             	</c:forEach>
+                 <tr>
+                 <c:forEach var="i" begin="0" end="5" >
+                   <td width=296px></td>
+                </c:forEach>
 
-             	</tr>
-            	<c:forEach var="i" begin="0" end="${fn:length(clist)+1/5}" step="5">
+                </tr>
+               <c:forEach var="i" begin="0" end="${fn:length(clist)+1/5}" step="5">
                 <tr>
                     <c:forEach var="vo" items="${clist}" begin="${i}" end="${i+4}">
-                    <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
-                    	
+                          <c:choose>
+                           <c:when test="${!empty vo.study_pw}">
+                              <td><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                      </c:otherwise>
+                      </c:choose>
+                       
                         <p>
                         <c:choose>
-	                        <c:when test="${fn:length(vo.study_title) gt 15}">
-		                        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
-		                    </c:when>
-		                    <c:otherwise>
-						        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
-						    </c:otherwise>
-		                 </c:choose>
-		                 </p>
-		                 <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
-		                 
-		                <!-- 카테고리  begin -->
-		                <c:choose>
-		                	<c:when test="${vo.study_cate != null}">
-		                		<c:choose>
-		                			<c:when test="${vo.study_cate == '어학'}">
-				                         <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '취업'}">
-				                         <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '자격증'}">
-				                         <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '공무원'}">
-				                         <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '대입 수능'}">
-				                         <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:otherwise>
-				                         <p class="number" style="background-color:#FDE4CF !important;">👩‍🏫&nbsp${vo.study_cate}</p>
-				                    </c:otherwise>
-		                        </c:choose>
-                         	</c:when>
-		                </c:choose>     
-		                <!-- 카테고리 end -->   
-		                                    
+                           <c:when test="${fn:length(vo.study_title) gt 15}">
+                              <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                    <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                          </c:when>
+                          <c:otherwise>
+                          <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                   <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                      </c:otherwise>
+                       </c:choose>
+                       </p>
+                       <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
+                       
+                      <!-- 카테고리  begin -->
+                      <c:choose>
+                         <c:when test="${vo.study_cate != null}">
+                            <c:choose>
+                               <c:when test="${vo.study_cate == '어학'}">
+                                     <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '취업'}">
+                                     <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '자격증'}">
+                                     <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '공무원'}">
+                                     <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '대입 수능'}">
+                                     <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="number" style="background-color:#FDE4CF !important;">🏫&nbsp${vo.study_cate}</p>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:when>
+                      </c:choose>     
+                      <!-- 카테고리 end -->   
+                                          
                     </td>
                     </c:forEach>
                 </tr>
@@ -552,56 +658,77 @@ function resultHtml(data){
             <!-- /////////////////////// 4.공무원 /////////////////////// -->
            
            <table class="table off hide">
-           		<tr>
-           		<c:forEach var="i" begin="0" end="5" >
-             		<td width=296px></td>
-             	</c:forEach>
+                 <tr>
+                 <c:forEach var="i" begin="0" end="5" >
+                   <td width=296px></td>
+                </c:forEach>
 
-             	</tr>
-            	<c:forEach var="i" begin="0" end="${fn:length(olist)+1/5}" step="5">
+                </tr>
+               <c:forEach var="i" begin="0" end="${fn:length(olist)+1/5}" step="5">
                 <tr>
                     <c:forEach var="vo" items="${olist}" begin="${i}" end="${i+4}">
-                    <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
-                    	
+                       <c:choose>
+                           <c:when test="${!empty vo.study_pw}">
+                              <td><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                      </c:otherwise>
+                      </c:choose>
+                       
                         <p>
-                        <c:choose>
-	                        <c:when test="${fn:length(vo.study_title) gt 15}">
-		                        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
-		                    </c:when>
-		                    <c:otherwise>
-						        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
-						    </c:otherwise>
-		                 </c:choose>
-		                 </p>
-		                 <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
-		                 
-		                <!-- 카테고리  begin -->
-		                <c:choose>
-		                	<c:when test="${vo.study_cate != null}">
-		                		<c:choose>
-		                			<c:when test="${vo.study_cate == '어학'}">
-				                         <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '취업'}">
-				                         <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '자격증'}">
-				                         <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '공무원'}">
-				                         <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '대입 수능'}">
-				                         <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:otherwise>
-				                         <p class="number" style="background-color:#FDE4CF !important;">👩‍🏫&nbsp${vo.study_cate}</p>
-				                    </c:otherwise>
-		                        </c:choose>
-                         	</c:when>
-		                </c:choose>     
-		                <!-- 카테고리 end -->   
-		                                    
+                         <c:choose>
+                           <c:when test="${fn:length(vo.study_title) gt 15}">
+                              <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                    <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                          </c:when>
+                          <c:otherwise>
+                          <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                   <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                      </c:otherwise>
+                       </c:choose>
+                       </p>
+                       <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
+                       
+                      <!-- 카테고리  begin -->
+                      <c:choose>
+                         <c:when test="${vo.study_cate != null}">
+                            <c:choose>
+                               <c:when test="${vo.study_cate == '어학'}">
+                                     <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '취업'}">
+                                     <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '자격증'}">
+                                     <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '공무원'}">
+                                     <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '대입 수능'}">
+                                     <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="number" style="background-color:#FDE4CF !important;">🏫&nbsp${vo.study_cate}</p>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:when>
+                      </c:choose>     
+                      <!-- 카테고리 end -->   
+                                          
                     </td>
                     </c:forEach>
                 </tr>
@@ -614,56 +741,77 @@ function resultHtml(data){
            <!-- /////////////////////// 5.공무원 /////////////////////// -->
            
            <table class="table uni hide">
-           		<tr>
-           		<c:forEach var="i" begin="0" end="5" >
-             		<td width=296px></td>
-             	</c:forEach>
+                 <tr>
+                 <c:forEach var="i" begin="0" end="5" >
+                   <td width=296px></td>
+                </c:forEach>
 
-             	</tr>
-            	<c:forEach var="i" begin="0" end="${fn:length(ulist)+1/5}" step="5">
+                </tr>
+               <c:forEach var="i" begin="0" end="${fn:length(ulist)+1/5}" step="5">
                 <tr>
                     <c:forEach var="vo" items="${ulist}" begin="${i}" end="${i+4}">
-                    <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
-                    	
+                          <c:choose>
+                           <c:when test="${!empty vo.study_pw}">
+                              <td><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                      </c:otherwise>
+                      </c:choose>
+                       
                         <p>
-                        <c:choose>
-	                        <c:when test="${fn:length(vo.study_title) gt 15}">
-		                        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
-		                    </c:when>
-		                    <c:otherwise>
-						        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
-						    </c:otherwise>
-		                 </c:choose>
-		                 </p>
-		                 <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
-		                 
-		                <!-- 카테고리  begin -->
-		                <c:choose>
-		                	<c:when test="${vo.study_cate != null}">
-		                		<c:choose>
-		                			<c:when test="${vo.study_cate == '어학'}">
-				                         <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '취업'}">
-				                         <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '자격증'}">
-				                         <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '공무원'}">
-				                         <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '대입 수능'}">
-				                         <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:otherwise>
-				                         <p class="number" style="background-color:#FDE4CF !important;">👩‍🏫&nbsp${vo.study_cate}</p>
-				                    </c:otherwise>
-		                        </c:choose>
-                         	</c:when>
-		                </c:choose>     
-		                <!-- 카테고리 end -->   
-		                                    
+                         <c:choose>
+                           <c:when test="${fn:length(vo.study_title) gt 15}">
+                              <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                    <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                          </c:when>
+                          <c:otherwise>
+                          <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                   <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                      </c:otherwise>
+                       </c:choose>
+                       </p>
+                       <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
+                       
+                      <!-- 카테고리  begin -->
+                      <c:choose>
+                         <c:when test="${vo.study_cate != null}">
+                            <c:choose>
+                               <c:when test="${vo.study_cate == '어학'}">
+                                     <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '취업'}">
+                                     <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '자격증'}">
+                                     <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '공무원'}">
+                                     <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '대입 수능'}">
+                                     <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="number" style="background-color:#FDE4CF !important;">🏫&nbsp${vo.study_cate}</p>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:when>
+                      </c:choose>     
+                      <!-- 카테고리 end -->   
+                                          
                     </td>
                     </c:forEach>
                 </tr>
@@ -676,56 +824,77 @@ function resultHtml(data){
            <!-- /////////////////////// 6.임용 /////////////////////// -->
            
            <table class="table teacher hide">
-           		<tr>
-           		<c:forEach var="i" begin="0" end="5" >
-             		<td width=296px></td>
-             	</c:forEach>
+                 <tr>
+                 <c:forEach var="i" begin="0" end="5" >
+                   <td width=296px></td>
+                </c:forEach>
 
-             	</tr>
-            	<c:forEach var="i" begin="0" end="${fn:length(tlist)+1/5}" step="5">
+                </tr>
+               <c:forEach var="i" begin="0" end="${fn:length(tlist)+1/5}" step="5">
                 <tr>
                     <c:forEach var="vo" items="${tlist}" begin="${i}" end="${i+4}">
-                    <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
-                    	
+                          <c:choose>
+                           <c:when test="${!empty vo.study_pw}">
+                              <td><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                          </c:when>
+                          <c:otherwise>
+                          <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                      </c:otherwise>
+                      </c:choose>
+                       
                         <p>
-                        <c:choose>
-	                        <c:when test="${fn:length(vo.study_title) gt 15}">
-		                        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
-		                    </c:when>
-		                    <c:otherwise>
-						        <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
-						    </c:otherwise>
-		                 </c:choose>
-		                 </p>
-		                 <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
-		                 
-		                <!-- 카테고리  begin -->
-		                <c:choose>
-		                	<c:when test="${vo.study_cate != null}">
-		                		<c:choose>
-		                			<c:when test="${vo.study_cate == '어학'}">
-				                         <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '취업'}">
-				                         <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '자격증'}">
-				                         <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '공무원'}">
-				                         <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:when test="${vo.study_cate == '대입 수능'}">
-				                         <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
-				                    </c:when>
-				                    <c:otherwise>
-				                         <p class="number" style="background-color:#FDE4CF !important;">👩‍🏫&nbsp${vo.study_cate}</p>
-				                    </c:otherwise>
-		                        </c:choose>
-                         	</c:when>
-		                </c:choose>     
-		                <!-- 카테고리 end -->   
-		                                    
+                         <c:choose>
+                           <c:when test="${fn:length(vo.study_title) gt 15}">
+                              <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                    <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                          </c:when>
+                          <c:otherwise>
+                          <c:choose>
+                                 <c:when test="${!empty vo.study_pw}">
+                                   <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                                </c:when>
+                                <c:otherwise>
+                               <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                            </c:otherwise>
+                           </c:choose>
+                      </c:otherwise>
+                       </c:choose>
+                       </p>
+                       <p class="number pvalue">👥&nbsp${vo.study_now}/4</p>
+                       
+                      <!-- 카테고리  begin -->
+                      <c:choose>
+                         <c:when test="${vo.study_cate != null}">
+                            <c:choose>
+                               <c:when test="${vo.study_cate == '어학'}">
+                                     <p class="number" style="background-color:#98F5E1 !important;">🅰️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '취업'}">
+                                     <p class="number" style="background-color:#90DBF4 !important;">🔥&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '자격증'}">
+                                     <p class="number" style="background-color:#A3C4F3 !important;">📇&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '공무원'}">
+                                     <p class="number" style="background-color:#CFBAF0 !important;">🏢&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:when test="${vo.study_cate == '대입 수능'}">
+                                     <p class="number" style="background-color:#F1C0E8 !important;">✍️&nbsp${vo.study_cate}</p>
+                                </c:when>
+                                <c:otherwise>
+                                     <p class="number" style="background-color:#FDE4CF !important;">🏫&nbsp${vo.study_cate}</p>
+                                </c:otherwise>
+                              </c:choose>
+                            </c:when>
+                      </c:choose>     
+                      <!-- 카테고리 end -->   
+                                          
                     </td>
                     </c:forEach>
                 </tr>
@@ -738,33 +907,33 @@ function resultHtml(data){
            
                            
     </div>
-	<div class="sticky">
-	    <a href="make"><img src="${path}/resources/image/add.png" height="45" alt="로고" /></a>
+   <div class="sticky">
+       <a href="make"><img src="${path}/resources/image/add.png" height="45" alt="로고" /></a>
     </div>
     
-	<div class="search">
-	    <button class="search2"><img src="${path}/resources/image/search.png" height="45" alt="로고" /></button>
+   <div class="search">
+       <button class="search2"><img src="${path}/resources/image/search.png" height="45" alt="로고" /></button>
     </div>
     
     <div class="index1 hide">
-	<div class="index">
-		
-		<div class="mb-2" style="font-size:20px;"><b>스터디 방 검색</b></div>
-		
-	    <input id="index" type="text" class="mb-3" placeholder="스터디 방 이름 입력" >
-	    <button id="indexbtn" type="button" onclick="index()">🔍</button>
-	    
-	    
-	    <!-- ajax 구간 -->
-	    <div id="indexview">
-	    <p>검색 결과가 없습니다.</p>
-    	</div>
-    	<!-- ajax 구간 끝 -->
-    	
+   <div class="index">
+      
+      <div class="mb-2" style="font-size:20px;"><b>스터디 방 검색</b></div>
+      
+       <input id="index" type="text" class="mb-3" placeholder="스터디 방 이름 입력" >
+       <button id="indexbtn" type="button" onclick="index()">🔍</button>
+       
+       
+       <!-- ajax 구간 -->
+       <div id="indexview">
+       <p>검색 결과가 없습니다.</p>
+       </div>
+       <!-- ajax 구간 끝 -->
+       
     </div>
     
-	<div class="exit">
-	    <button class="exit2"><img src="${path}/resources/image/close.png" height="25" alt="로고" /></button>
+   <div class="exit">
+       <button class="exit2"><img src="${path}/resources/image/close.png" height="25" alt="로고" /></button>
     </div>
     </div>
     <br>
@@ -811,16 +980,16 @@ function resultHtml(data){
     <script src="${path}/resources/js/theme.js"></script>
     <script src="${path}/resources/js/home.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script>
-	function nshow(){
-		
-		$('.hideall').css("display","none");
-		$('.hidenew').css("display","inline-block");
-	}
-	
-	function logout(){
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script>
+   function nshow(){
+      
+      $('.hideall').css("display","none");
+      $('.hidenew').css("display","inline-block");
+   }
+   
+   function logout(){
         Swal.fire({
           title: '로그아웃 하시겠습니까?',
           text: "다시 돌아와주세요 :)",
@@ -838,7 +1007,7 @@ function resultHtml(data){
      }
       
 
-	</script>
+   </script>
   
       
 </body>
