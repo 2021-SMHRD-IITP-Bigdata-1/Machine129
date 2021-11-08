@@ -16,5 +16,7 @@ public class TimeVO {
 	public String time_start;
 	public String time_end;
 	public int time_sum;
+	public int week_num;
+	
 
 }

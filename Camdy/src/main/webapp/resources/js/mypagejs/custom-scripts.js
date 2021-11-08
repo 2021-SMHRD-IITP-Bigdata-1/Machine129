@@ -1,8 +1,10 @@
-/*------------------------------------------------------
-    Author : www.webthemez.com
-    License: Commons Attribution 3.0
-    http://creativecommons.org/licenses/by/3.0/
----------------------------------------------------------  */
+let allpercent = document.getElementById("allpercent").value;
+let allphpercent = document.getElementById("allphpercent").value;
+let alloutpercent = document.getElementById("alloutpercent").value;
+let mon = document.getElementById("mon").value;
+let tue = document.getElementById("tue").value;
+
+
 
 (function ($) {
     "use strict";
@@ -31,7 +33,7 @@ var lineChart1 = new Chart(ctx1, {
     datasets:[
       {
         label:'일주일간 공부',
-        data:[1,5,7,9,22,17,15],
+        data:[1,5,0,0,0,0,0],
         backgroundColor:'white',        
         borderWidth:1,
         borderColor: "#900",
@@ -61,32 +63,32 @@ var lineChart1 = new Chart(ctx1, {
             Morris.Bar({
                 element: 'morris-bar-chart',
                 data: [{
-                    y: '일요일',
-                    a: 100,             
-                }, {
                     y: '월요일',
-                    a: 75,                  
+                    a: mon,             
                 }, {
                     y: '화요일',
-                    a: 50,                  
+                    a: tue,                  
                 }, {
                     y: '수요일',
-                    a: 75,               
+                    a: 0,                  
                 }, {
                     y: '목요일',
-                    a: 50,                   
+                    a: 0,               
                 }, {
                     y: '금요일',
-                    a: 75,                   
+                    a: 0,                   
                 }, {
                     y: '토요일',
-                    a: 100,                   
+                    a: 0,                   
+                }, {
+                    y: '일요일',
+                    a: 0,                   
                 }],
                 xkey: 'y',
                 ykeys: ['a'],
                 labels: ['Series A'],
-				 barColors: [
-                    '#EE82EE',
+				 barColors: [ '#2196F3'
+                    
                  
   ],
                 hideHover: 'auto',
@@ -100,17 +102,17 @@ var lineChart1 = new Chart(ctx1, {
             Morris.Donut({
                 element: 'morris-donut-chart',
                 data: [{
-                    label: "집중시간",
-                    value: 12
+                    label: "순 공부시간",
+                    value: allpercent
                 }, {
-                    label: "핸드폰",
-                    value: 30
+                    label: "휴대폰 사용 시간",
+                    value: allphpercent
                 }, {
-                    label: "이탈시간",
-                    value: 20
+                    label: "이탈 시간",
+                    value: alloutpercent
                 }],
 				   colors: [
-                    '#fed6e3','#a8edea','#fbfcdb','#e4efe9' 
+                    '#2196F3','#ff9800','#F44336'
   ],
                 resize: true
             });

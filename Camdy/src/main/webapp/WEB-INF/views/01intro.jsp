@@ -110,8 +110,8 @@
 	            	<div class="p-3 m-sm-3 text-center" style="background-color:#b9fbc0; border-radius:10px">자리를 이탈하면 자동으로 시간이 멈춰요!</div>
 	            </div>
 	            <div class="col-lg-6 float-l">
-	            	<div class="p-3 m-sm-3 text-center fs-8" >💤</div>
-	            	<div class="p-3 m-sm-3 text-center" style="background-color:#b9fbc0; border-radius:10px">깜빡 잠에 들어도, TIME STOP!</div>
+	            	<div class="p-3 m-sm-3 text-center fs-8" >📊</div>
+	            	<div class="p-3 m-sm-3 text-center" style="background-color:#b9fbc0; border-radius:10px">공부시간 데이터를 자세하게 확인하세요</div>
 	            </div>
 	            <div class="col-lg-6 float-l">
 	            	<div class="p-3 m-sm-3 text-center fs-8" >📱</div>

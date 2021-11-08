@@ -16,4 +16,5 @@ public class PhonesVO {
 	public String phone_end;
 	public int phone_sum;
 	public int phone_seq;
+	public int week_num;
 }

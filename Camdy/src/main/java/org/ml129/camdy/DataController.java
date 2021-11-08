@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -187,6 +188,7 @@ public class DataController {
 		
 		
 		
+		
 
 		return "11result";
 
@@ -207,9 +209,19 @@ public class DataController {
 		
 		//이번주//
 		//1)이번주 평균 시간//
-		TimeVO weekavg = smapper.weekavg(user_id);
+		List<TimeVO> weekavg = smapper.weekavg(user_id);
 		
-		int weeksum = weekavg.getTime_sum();
+		int weeksum = 0;
+		
+		for (int i = 0; i < weekavg.size(); i++) {
+			
+			weeksum += 	weekavg.get(i).getTime_sum();
+			
+		}
+		
+		weeksum = weeksum/weekavg.size();
+		
+		System.out.println(weeksum);
 		
 		int wavghour = weeksum/3600;
 		int wavgminute = weeksum%3600/60;
@@ -247,7 +259,7 @@ public class DataController {
 		req.setAttribute("wpuminute", wpuminute);
 		req.setAttribute("wpuseconds", wpuseconds);
 		
-		//4 캠디와 같이 공부한 시간
+		//4. 캠디와 같이 공부한 시간
 		TimeVO totaltime = smapper.totaltime(user_id);
 		
 		int alltime = totaltime.getTime_sum();
@@ -256,12 +268,59 @@ public class DataController {
 		
 		req.setAttribute("allhour", allhour);
 		
+		//5.이번주 순 공부시간 비율
 		
+		double weekppercent = (double) weekpure/ (double) weektsum *100.0;
 		
+		req.setAttribute("weekppercent", (int) weekppercent);
+		
+		//6. 총 순 공부시간 비율
+		
+		PhonesVO totalphone = smapper.totalphone(user_id);
+		outsVO totalout = smapper.totalout(user_id);
+		
+		int allphone = totalphone.getPhone_sum();
+		int allout = totalout.getOut_sum();
+		
+		double allpercent = (double) (alltime - allphone - allout ) / (double) alltime *100.0;
+		
+		req.setAttribute("allpercent", (int) allpercent);
+		
+		//7. 이번 주 이탈/휴대폰 사용 시간 비율
+		
+		double weekphpercent = (double) weekpsum / (double) weektsum *100.0;
+		double weekoutpercent = (double) weekosum / (double) weektsum *100.0;
+		
+		req.setAttribute("weekphpercent", (int) weekphpercent);
+		req.setAttribute("weekoutpercent", (int) weekoutpercent);
+		
+		//8. 총 이탈/휴대폰 비율
+
+		double allphpercent = (double) allphone / (double) alltime *100.0;
+		double alloutpercent = (double) allout / (double) alltime *100.0;
+		
+		req.setAttribute("allphpercent", (int) allphpercent);
+		req.setAttribute("alloutpercent", (int) alloutpercent);
 		
 		//세션 보내기//
 		session.setAttribute("user_id",user_id);
 		session.setAttribute("user_nickname",user_nickname);
+		
+		//9. 이번주 공부 시간
+		List<TimeVO> weeklist = smapper.weeklist(user_id);
+		
+		int mon = (weeklist.get(0).getTime_sum())/3600;
+		int tue = (weeklist.get(1).getTime_sum())/3600;
+		
+		req.setAttribute("mon", mon);
+		req.setAttribute("tue", tue);
+		
+		System.out.println(mon);
+		System.out.println(tue);
+
+		
+	
+		
 		
 
 		return "12mypage";

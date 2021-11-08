@@ -29,7 +29,7 @@
 
 <!-- Time 결과창 -->
 <insert id="addtimes" parameterType="org.ml129.domain.TimeVO">
-    insert into times values(#{user_id},NOW(),#{time_start},#{time_end},#{time_sum})
+    insert into times values(#{user_id},NOW(),#{time_start},#{time_end},#{time_sum},yearweek(now(),7));
 </insert>
 
 <select id="timebefore" resultType="org.ml129.domain.TimeVO">

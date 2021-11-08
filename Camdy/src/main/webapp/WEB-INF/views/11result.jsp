@@ -97,12 +97,12 @@
         <p class="box3-p1" style="margin-left:10px;"> 자리 비움 </p>
         <div class="box-box1" style="margin-left:10px;">
         <c:choose>
-            <c:when test="${phour != 0}">
+            <c:when test="${ohour != 0}">
             ${ohour}시간
             </c:when>
         </c:choose>
-            <c:choose>
-            <c:when test="${pminute != 0}">
+        <c:choose>
+            <c:when test="${ominute != 0}">
             ${ominute}분
         	</c:when>
         </c:choose>
@@ -123,6 +123,9 @@
         
         <div class="box2">
         <p class="box1-p2"> ${user_nickname}님! 순 공부시간 비율은 약 ${pupercent}% 입니다.</p>
+        </div>
+        <div class="box2">
+        <p class="box1-p2"> ${user_nickname}님! 목표시간 까지 시간 분 남았습니다</p>
         </div>
         
         

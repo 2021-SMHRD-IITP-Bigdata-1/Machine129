@@ -125,7 +125,7 @@
 						<h4>캠디와 함께 공부한 시간</h4> 
 						</div>
 						<div class="card-action">
-						<strong>${allhour}시간을 함께💚</strong>
+						<strong>${allhour}시간</strong>
 						</div>
 						</div>
 						</div> 						 
@@ -139,36 +139,36 @@
 						  	<div class="row">
 								<div class="col-xs-12 col-sm-6 col-md-6"> 
 										<div class="card-panel text-center">
-											<h4>집중시간</h4>
-											<div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
+											<h4>이번 주 순공부 시간 비율</h4>
+											<div class="easypiechart" id="easypiechart-blue" data-percent="${weekppercent}" ><span class="percent">${weekppercent}%</span>
 											</div> 
 										</div>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-6"> 
 										<div class="card-panel text-center">
-											<h4>이탈시간</h4>
-											<div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
+											<h4>이번 주 이탈 시간 비율</h4>
+											<div class="easypiechart" id="easypiechart-red" data-percent="${weekoutpercent}" ><span class="percent">${weekoutpercent}%</span>
 											</div>
 										</div>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-6"> 
 										<div class="card-panel text-center">
-											<h4>핸드폰</h4>
-											<div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
+											<h4>내 순공부 시간 비율</h4>
+											<div class="easypiechart" id="easypiechart-teal" data-percent="${allpercent}" ><span class="percent">${allpercent}%</span>
 											</div> 
 										</div>
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-6"> 
 										<div class="card-panel text-center">
-											<h4>이탈시간</h4>
-											<div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>
+											<h4>이번 주 휴대폰 사용 비율</h4>
+											<div class="easypiechart" id="easypiechart-orange" data-percent="${weekphpercent}" ><span class="percent">${weekphpercent}%</span>
 											</div>
 										</div>
 								</div>  
 							</div>
 						</div>							
 						</div><!--/.row-->
-						<div class="col-xs-12 col-sm-12 col-md-5"> 
+						<div class="col-xs-12 col-sm-12 col-md-5" style="font-family: 'S-CoreDream-6Bold';"> 
 						     <div class="row">
 									<div class="col-xs-12"> 
 									<div class="card">
@@ -176,7 +176,7 @@
 										  <div id="morris-donut-chart"></div>
 										</div> 
 										<div  align="center" class="card-action">
-										  <b>?</b>
+										  <b></b>
 										</div>
 									</div>	
 								</div>
@@ -191,7 +191,7 @@
 								<canvas id = "line-chart1"></canvas>
 							</div>	
 						<div align="center" class="card-action">
-								<b> 이번 주 집중한 시간 </b>
+								<b> 이번 주 순 공부 시간 </b>
 						</div>						 
 						</div> 						
 						</div>		  
@@ -202,12 +202,12 @@
 					  <div id="morris-bar-chart"></div>
 					</div> 
 					<div align="center" class="card-action">
-					  <b> 이번 주 집중도 점수 </b>
+					  <b> 이번 주 공부 시간 </b>
 					</div>
 					</div>					
 					</div>					
 				</div> 			 								
-                <div class="row">
+                <div class="row" style="font-family: 'S-CoreDream-6Bold';">
                     <div class="col-xs-12">
 						<div class="card">
 					<div class="card-image"> 
@@ -234,6 +234,15 @@
             <!-- /. PAGE INNER  -->
         
         <!-- /. PAGE WRAPPER  -->
+        
+    <input type="hidden" id="allpercent" name="allpercent" value="${allpercent}">
+    <input type="hidden" id="allphpercent" name="allphpercent" value="${allphpercent}">
+    <input type="hidden" id="alloutpercent" name="alloutpercent" value="${alloutpercent}">
+    
+    <input type="hidden" id="mon" name="mon" value="${mon}">
+    <input type="hidden" id="tue" name="tue" value="${tue}">
+    
+    
     </div>
     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->

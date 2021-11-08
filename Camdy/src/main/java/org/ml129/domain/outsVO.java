@@ -16,5 +16,6 @@ public class outsVO {
 	public String out_end;
 	public int out_sum;
 	public int out_seq;
+	public int week_num;
 
 }

@@ -134,7 +134,7 @@
             }, 1000);
             
           // start btn => 시작되야함.
-          document.getElementById("startbtn").addEventListener("click",cap);
+          //document.getElementById("startbtn").addEventListener("click",cap);
           
           function cap() {
 			   context.drawImage(video,0,0,320,240);
