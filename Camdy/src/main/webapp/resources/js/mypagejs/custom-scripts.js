@@ -33,7 +33,7 @@ var lineChart1 = new Chart(ctx1, {
     datasets:[
       {
         label:'일주일간 공부',
-        data:[1,5,0,0,0,0,0],
+        data:[1,1,0,0,0,0,0],
         backgroundColor:'white',        
         borderWidth:1,
         borderColor: "#900",

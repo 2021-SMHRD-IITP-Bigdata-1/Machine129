@@ -39,11 +39,11 @@
                         <textarea id="study_content" name="study_content" placeholder="스터디 규칙, 공지사항 등을 입력해주세요."></textarea>
                     </div>
             <!--  <div id="test_cnt">(0 / 100 )</div>-->
-            <div class="studyrm">
+           <!--  <div class="studyrm">
                 <label class="font-1" for="avartar">대표 이미지</label>
                 <input type="file" name="study_pic" id="study_pic" autocapitalize="off"
                     accept="image/png, image/jpeg">
-            </div>
+            </div>--> 
             
             <div class="studyrm-2">
             	<label class="font-1">방 유형</label><br>

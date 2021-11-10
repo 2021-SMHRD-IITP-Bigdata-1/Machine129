@@ -55,10 +55,16 @@
             
         </section>
         
-        <div class="exit">
+        <div class="exit hide">
 	    	<button class="exit2" onclick="location.href='result?study_seq=${study_seq}'">나가기</button>
 	    	
     	</div>
+    	
+    	<div id="stop" class="stop">
+	    	<button id="stop2" onclick="">STOP!</button>
+    	</div>
+    	
+    	
     	<input type="hidden" id="user_id" name="user_id" value=${user_id} >
     	
     
@@ -134,7 +140,7 @@
             }, 1000);
             
           // start btn => 시작되야함.
-          //document.getElementById("startbtn").addEventListener("click",cap);
+          document.getElementById("stop2").addEventListener("click",cap);
           
           function cap() {
 			   context.drawImage(video,0,0,320,240);
@@ -160,45 +166,25 @@
           
           let capinter = setTimeout(function tick(){
 				 cap();
-				 capinter = setTimeout(tick,5000)
-			   }, 5000);
+				 capinter = setTimeout(tick,1000)
+			   }, 1000);
           
           
           
+          document.getElementById("stop").addEventListener("click",clear);
           
           
-          
-          
+          function clear(){
+        	  document.querySelector('.exit').classList.remove('hide');
+        	  document.querySelector('.stop').classList.add('hide');
+        	  clearTimeout(capinter);
+          }
           
           
 
-          // pause btn
-          $("#pausebtn").click(function(){
-        	clearInterval(capinter);
-            if(time != 0){
-              $(".fa").css("color","#b9fbc0")
-              this.style.color = "#4C4C4C";
-              clearInterval(timer);
-              starFlag = true;
-            }
-            
-             
-          });
+        
 
-          // stop btn
-          $("#stopbtn").click(function(){
-        	clearInterval(capinter);
-            if(time != 0){
-              $(".fa").css("color","#b9fbc0")
-              this.style.color = "#4C4C4C";
-              clearInterval(timer);
-              starFlag = true;
-              time = 0;
-              init();
-            }
-            
-            
-          });
+         
         }
 
     </script>   

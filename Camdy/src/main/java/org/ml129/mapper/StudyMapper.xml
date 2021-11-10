@@ -7,8 +7,8 @@
 
 
 <insert id="studyInsert" parameterType="org.ml129.domain.StudyVO">
-       insert into studies(study_title,study_content,study_start_date,study_end_date,user_id,study_num,study_mhour,study_pw,study_cate)
-       values (#{study_title},#{study_content},NOW(),#{study_end_date},#{user_id},4,#{study_mhour},#{study_pw},#{study_cate}) 
+       insert into studies(study_title,study_content,study_start_date,study_end_date,user_id,study_pic,study_num,study_mhour,study_pw,study_cate)
+       values (#{study_title},#{study_content},NOW(),#{study_end_date},#{user_id},'https://www.marketing91.com/wp-content/uploads/2020/10/Study-Skills.jpg',4,#{study_mhour},#{study_pw},#{study_cate}) 
 </insert>
 
 <select id="studyindexlist" resultType="org.ml129.domain.StudyVO">

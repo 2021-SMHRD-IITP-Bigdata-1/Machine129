@@ -102,7 +102,7 @@
           <div class="row align-items-center">
             <div class="col-md-5 col-lg-6 order-0 order-md-1 text-end container">
             	<div class="col-lg-6 float-l">
-            		<div class="p-3 m-sm-3 text-center fs-8 " >⏱️</div>
+            		<div class="p-3 m-sm-3 text-center fs-8">⏱️</div>
             		<div class="p-3 m-sm-3 text-center" style="background-color:#b9fbc0; border-radius:10px">공부시간을 자동으로 측정합니다.</div>
             	</div>
 	            <div class="col-lg-6 float-l">

@@ -16,7 +16,7 @@ import org.ml129.domain.StudyVO;
 
 public interface StudyMapper {
 
-	public void studyInsert(@Param("study_title") String study_title, @Param("study_content") String study_content, @Param("study_pic") String study_pic, @Param("study_end_date") Date study_end_date,
+	public void studyInsert(@Param("study_title") String study_title, @Param("study_content") String study_content, @Param("study_end_date") Date study_end_date,
 			@Param("study_mhour") int study_mhour, @Param("user_id") String user_id, @Param("study_pw") String study_pw,  @Param("study_cate") String study_cate);
     
 	
@@ -56,15 +56,15 @@ public interface StudyMapper {
 	public TimeVO totalstudy(@Param("user_id") String user_id);
 
 	// 휴대폰 총 시간 가져오기
-	@Select("select today_date, sum(phone_sum) as phone_sum from phones where today_date= date_format(now(),'%Y-%m-%d') and user_id = #{user_id} and phone_start > #{time_start} group by today_date;")
+	@Select("select today_date, sum(phone_sum) as phone_sum from phones where today_date= date_format(now(),'%Y-%m-%d') and user_id = #{user_id} and phone_start >= #{time_start} group by today_date;")
 	public PhonesVO phonestudy(@Param("user_id") String user_id, @Param("time_start") String time_start);
 
-	@Select("select today_date, sum(out_sum) as out_sum from outs where today_date= date_format(now(),'%Y-%m-%d') and user_id = #{user_id} and out_start > #{time_start} group by today_date;")
+	@Select("select today_date, sum(out_sum) as out_sum from outs where today_date= date_format(now(),'%Y-%m-%d') and user_id = #{user_id} and out_start >= #{time_start} and out_seq > 0 group by today_date;")
 	public outsVO outstudy(@Param("user_id") String user_id, @Param("time_start") String time_start);
 
 	/////////// 마이페이지 Mapper ///////
 	// 1)이번 주 평균 시간
-	@Select("SELECT avg(time_sum) as time_sum FROM times where user_id= '${user_id}' and week_num = yearweek(now(),7) group by today_date;")
+	@Select("SELECT sum(time_sum) as time_sum FROM times where user_id= '${user_id}' and week_num = yearweek(now(),7) group by today_date;")
 	public List<TimeVO> weekavg(@Param("user_id") String user_id);
 	
 	// 2)이번 주 총 시간

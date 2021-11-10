@@ -153,9 +153,33 @@ video{
   padding-left:10px;
 }
 
+.stop {
+  display: inline-block;
+  position: fixed;
+  top: 90% !important;
+  left: 94.5% !important;
+  width: 60px;
+  height: 40px;
+  background: #ffcfd2;
+  border-radius:10px;
+  padding-top:13px;
+  padding-left:10px;
+}
+
 .exit2{
 	font-family: 'S-CoreDream-4Regular';
 	background-color:transparent;
 	border:0;
 	outline:0;
+}
+
+#stop2{
+	font-family: 'S-CoreDream-4Regular';
+	background-color:transparent;
+	border:0;
+	outline:0;
+}
+
+.hide {
+	display:none;
 }

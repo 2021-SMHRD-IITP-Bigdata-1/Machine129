@@ -11,11 +11,12 @@
 <meta charset="UTF-8">
 <title>rank</title>
 <link href="${path}/resources/css/result.css" rel="stylesheet"/ >
+<link href="${path}/resources/css/animate.css" rel="stylesheet"/ >
 </head>
 <body>
     
     
-        <div class="box1">
+        <div class="wow animate__fadeIn box1"  data-wow-duration="2s" data-wow-delay="5s">
             <p class="box1-p1">
             <c:choose>
             	<c:when test="${hour != 0}">
@@ -125,7 +126,7 @@
         <p class="box1-p2"> ${user_nickname}님! 순 공부시간 비율은 약 ${pupercent}% 입니다.</p>
         </div>
         <div class="box2">
-        <p class="box1-p2"> ${user_nickname}님! 목표시간 까지 시간 분 남았습니다</p>
+        <p class="box1-p2"> ${user_nickname}님! 목표시간 까지 ${dohour}시간 ${dominute}분 남았습니다. </p>
         </div>
         
         
@@ -136,5 +137,8 @@
             </div>
         
         
-    
+ <script src="${path}/resources/js/wow.min.js"></script>
+ <script>
+  		new WOW().init();
+ </script>
 </body>

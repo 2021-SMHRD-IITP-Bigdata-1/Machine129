@@ -276,7 +276,7 @@ function resultHtml(data){
                            <c:when test="${fn:length(vo.study_title) gt 15}">
                                <c:choose>
                                  <c:when test="${!empty vo.study_pw}">
-                                    <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                                    <p class="pvalue">🔒<a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
                                 </c:when>
                                 <c:otherwise>
                                <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
@@ -286,7 +286,7 @@ function resultHtml(data){
                           <c:otherwise>
                              <c:choose>
                                  <c:when test="${!empty vo.study_pw}">
-                                   <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
+                                   <p class="pvalue">🔒<a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
                                 </c:when>
                                 <c:otherwise>
                                <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${vo.study_title}"></c:out></b></a></p>
@@ -344,7 +344,7 @@ function resultHtml(data){
                     <c:forEach var="vo" items="${nlist}" begin="${i}" end="${i+4}">
                        <c:choose>
                            <c:when test="${!empty vo.study_pw}">
-                              <td><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
+                              <td>🔒<a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
                           </c:when>
                           <c:otherwise>
                           <td><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><img class="imgset" src="${vo.study_pic}" alt="study-img"></a>
@@ -356,7 +356,7 @@ function resultHtml(data){
                            <c:when test="${fn:length(vo.study_title) gt 15}">
                               <c:choose>
                                  <c:when test="${!empty vo.study_pw}">
-                                    <p class="pvalue"><a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
+                                    <p class="pvalue">🔒<a href="${path}/studygo_check.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>
                                 </c:when>
                                 <c:otherwise>
                                <p class="pvalue"><a href="${path}/studygo.do?study_seq=${vo.study_seq}"><b><c:out value="${fn:substring(vo.study_title, 0, 12)}"></c:out>...</b></a></p>

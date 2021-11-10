@@ -76,7 +76,6 @@ public class StudyController {
 		
 	    logger.info(study_title);
 		logger.info(study_content);
-		logger.info(study_pic);
 		logger.info(study_end_date_bf);
 		logger.info(user_id);
 		logger.info(study_mhour_bf);
@@ -95,7 +94,7 @@ public class StudyController {
 	    //숫자로 변환//
 	    int study_mhour = Integer.parseInt(study_mhour_bf);
 
-		smapper.studyInsert(study_title, study_content, study_pic, study_end_date , study_mhour, user_id, study_pw, study_cate);
+		smapper.studyInsert(study_title, study_content, study_end_date , study_mhour, user_id, study_pw, study_cate);
 		List<StudyVO> camdylist = smapper.studyVO(study_title);
 		
 		
@@ -163,7 +162,7 @@ public class StudyController {
 		//아이디 세션 값 가져오기//
 		HttpSession session = req.getSession();
 		String user_id = (String) session.getAttribute("user_id");
-		
+
 		
 		System.out.println(user_id);
 		System.out.println(study_seq);

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.ml129.domain.PhonesVO;
+import org.ml129.domain.StudyVO;
 import org.ml129.domain.TimeVO;
 import org.ml129.domain.outsVO;
 import org.ml129.mapper.StudyMapper;
@@ -46,6 +47,8 @@ public class DataController {
 		//처음시간 가져오기//
 		String time_start = (String) session.getAttribute("study_now"); //Stringtype
 		Temporal study_now_start = (Temporal) session.getAttribute("study_now_start"); //Timetype
+		
+		
 		
 		
 		//나가기시간 세션에 저장하기//
@@ -109,7 +112,7 @@ public class DataController {
 		outsVO outstudy = smapper.outstudy(user_id,time_start);
 		
 		int out_sum = 0;
-		
+
 		int ohour = 0;
 		int ominute = 0;
 		int oseconds = 0;
@@ -134,6 +137,16 @@ public class DataController {
 		System.out.println(pupercent);
 		System.out.println(purestu);
 		System.out.println(time_sum);
+		
+		// 목표시간 //
+		StudyVO goaltime = smapper.studysVO(study_seq);
+		
+		int gtime = goaltime.getStudy_mhour()*3600;
+		int dotime = gtime - total_sum;
+		
+		int dohour = dotime/3600;
+		int dominute = dotime%3600/60;
+		
 		
 		
 		//방금
@@ -175,6 +188,10 @@ public class DataController {
 		//순공부시간 %
 		req.setAttribute("pupercent", (int)pupercent);
 		
+		//목표시간
+		req.setAttribute("dohour", dohour);
+		req.setAttribute("dominute", dominute);
+		
 		
 		session.setAttribute("study_now",time_start);
 		session.setAttribute("study_end",time_end);
@@ -194,6 +211,7 @@ public class DataController {
 
 	}
 	
+	
 	@RequestMapping("mypage")
 	public String mypage(HttpServletRequest req) {
 		logger.info("마이페이지 입니다.");
@@ -204,7 +222,6 @@ public class DataController {
 				
 		//닉네임 세션 값 가져오기//
 		String user_nickname = (String) session.getAttribute("user_nickname");
-		
 		
 		
 		//이번주//
